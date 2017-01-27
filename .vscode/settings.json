@@ -1,0 +1,21 @@
+{
+    "files.associations": {
+        "cstddef": "cpp",
+        "*h*h*h*h*h*hcwchar": "cpp",
+        "cwchar": "cpp",
+        "cstdint": "cpp",
+        "*htype_traits": "cpp",
+        "cctype": "cpp",
+        "*hinitializer_list": "cpp",
+        "new": "cpp",
+        "clocale": "cpp",
+        "cstdlib": "cpp",
+        "cstdio": "cpp",
+        "*hexception": "cpp",
+        "*h*hcstdarg": "cpp",
+        "typeinfo": "cpp",
+        "cwctype": "cpp",
+        "iostream": "cpp",
+        "string": "cpp"
+    }
+}
