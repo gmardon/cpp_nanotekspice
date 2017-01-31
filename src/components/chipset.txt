@@ -1,5 +1,3 @@
-4008 : 4bits adder.
-
 4013 : Dual Flip Flop.
 
 4017 : 10bits Johnson decade.
