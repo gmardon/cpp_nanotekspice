@@ -1,5 +1,5 @@
-#ifndef OUTPUT_HPP_
-# define OUTPUT_HPP_
+#ifndef c4001_HPP_
+# define c4001_HPP_
 
 # include <string>
 # include <iostream>
@@ -11,19 +11,18 @@
 
 namespace nts
 {
-    class Output : public IComponent
+    class c4001 : public IComponent
     {
     public:
-        Output();
+        c4001();
         virtual nts::Tristate Compute(std::size_t pin_num_this = 1);
         virtual void SetLink(std::size_t pin_num_this, nts::IComponent &component, std::size_t pin_num_target);
         virtual void Dump(void) const;
-        virtual ~Output(void);
+        virtual ~c4001(void);
 
     private:
         std::string name;
-        std::array<Pin, 1> pins;
+        std::array<Pin, 12> pins;
     };
 }
-
 #endif

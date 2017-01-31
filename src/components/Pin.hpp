@@ -11,6 +11,15 @@ namespace nts
     class Pin
     {
     public:
+        enum Mode
+        {
+            U = 0,
+            I,
+            O,
+            IO,
+        };
+
+    public:
         Pin();
         Pin(const Pin &);
         ~Pin();
@@ -20,11 +29,17 @@ namespace nts
         void setComponent(IComponent &);
         void setTarget(std::size_t);
         void setState(Tristate);
+        void setMode(Mode);
         IComponent &getComponent() const;
         std::size_t getTargetPin() const;
         Tristate getState() const;
+        Mode getMode() const;
+
+    public:
+        nts::Tristate compute();
 
     private:
+        Mode mode;
         nts::IComponent *component;
         Tristate state;
         std::size_t target_pin;
