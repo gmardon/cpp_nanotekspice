@@ -115,8 +115,7 @@ namespace nts {
     }
 
     QVariant Block::itemChange(GraphicsItemChange change, const QVariant &value) {
-
-        ::Q_UNUSED(change);
+        Q_UNUSED(change);
 
         return value;
     }
