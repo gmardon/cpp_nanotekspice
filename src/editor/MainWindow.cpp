@@ -29,12 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     saveAct->setStatusTip(tr("Save a file"));
     connect(saveAct, SIGNAL(triggered()), this, SLOT(saveFile()));
 
-    QAction *addAct = new QAction(tr("&Add"), this);
-    addAct->setStatusTip(tr("Add a block"));
-    connect(addAct, SIGNAL(triggered()), this, SLOT(addBlock()));
-
     fileMenu = menuBar()->addMenu(tr("&File"));
-    fileMenu->addAction(addAct);
     fileMenu->addAction(loadAct);
     fileMenu->addAction(saveAct);
     fileMenu->addSeparator();
@@ -67,6 +62,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     b = b->clone();
     b->setPos(150, 150);
+
+    this->setMinimumWidth(480);
+    this->setMinimumHeight(640);
 }
 
 MainWindow::~MainWindow()
@@ -96,17 +94,4 @@ void MainWindow::loadFile()
 	f.open(QFile::ReadOnly);
 	QDataStream ds(&f);
 	nodesEditor->load(ds);
-}
-
-void MainWindow::addBlock()
-{
-    Block *b = new Block(0);
-
-    scene->addItem(b);
-	static const char* names[] = {"Vin", "Voutsadfasdf", "Imin", "Imax", "mul", "add", "sub", "div", "Conv", "FFT"};
-	for (int i = 0; i < 4 + rand() % 3; i++)
-	{
-		b->addPort(names[rand() % 10], rand() % 2, 0, 0);
-        b->setPos(view->sceneRect().center().toPoint());
-	}
 }

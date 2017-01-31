@@ -17,10 +17,8 @@ public:
 private slots:
 	void saveFile();
 	void loadFile();
-	void addBlock();
 
 private:
-
 	Editor *nodesEditor;
     QMenu *fileMenu;
     QGraphicsView *view;
