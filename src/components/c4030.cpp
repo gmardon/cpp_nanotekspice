@@ -31,7 +31,7 @@ namespace nts
             Tristate t2 = this->pins[pin_num_this + ((pin_num_this % 2) ? (2) : (-2))].compute();
             if (t1 == UNDEFINED || t2 == UNDEFINED)
                 return (UNDEFINED);
-            return ((t1 || t2) && !(t1 || t2));
+            return ((t1 || t2) && !(t1 && t2));
         }
     }
 

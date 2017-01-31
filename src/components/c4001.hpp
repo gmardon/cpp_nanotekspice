@@ -24,4 +24,5 @@ namespace nts
         std::array<Pin, 12> pins;
     };
 }
+
 #endif

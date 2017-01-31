@@ -1,28 +1,27 @@
-#ifndef FALSE_HPP_
-# define FALSE_HPP_
+#ifndef INPUT_HPP_
+# define INPUT_HPP_
 
 # include <string>
 # include <iostream>
+# include <array>
 
 # include "IComponent.hpp"
+# include "Pin.hpp"
+# include "Tristate.hpp"
 
 namespace nts
 {
-    class False : public IComponent
+    class Input : public IComponent
     {
     public:
-        False(const std::string & = *new std::string());
-        False(const False &);
-        ~False();
-        const False &operator=(const False &);
-
-    public:
+        Input(Tristate state = UNDEFINED);
         virtual nts::Tristate Compute(std::size_t pin_num_this = 1);
         virtual void SetLink(std::size_t pin_num_this, nts::IComponent &component, std::size_t pin_num_target);
         virtual void Dump(void) const;
+        virtual ~Input(void);
 
     private:
-        std::string name;
+        std::array<Pin, 1> pins;
     };
 }
 

@@ -1,19 +1,52 @@
-#include "IComponent.hpp"
-#include "True.hpp"
-#include "c4001.hpp"
-#include "Output.hpp"
+#include "Component.hpp"
 
 int main()
 {
-    nts::IComponent *input1 = new nts::True();
-    nts::IComponent *input2 = new nts::True();
-    nts::IComponent *c4001 = new nts::c4001();
+    nts::IComponent *inputT1 = new nts::True();
+    nts::IComponent *inputT2 = new nts::True();
+    nts::IComponent *inputF1 = new nts::False();
+    nts::IComponent *inputF2 = new nts::False();
+    nts::IComponent *c4069 = new nts::c4069();
     nts::IComponent *output = new nts::Output();
+/*
+    output->SetLink(1, *c4069, 3);
 
-    c4001->SetLink(1, *input1, 1);
-    c4001->SetLink(2, *input2, 1);
-    output->SetLink(1, *c4001, 3);
-
+    c4069->SetLink(1, *inputT1, 1);
+    c4069->SetLink(2, *inputT2, 1);
     nts::Tristate_dump(output->Compute(1));
+    std::cout << std::endl;
+
+    c4069->SetLink(1, *inputT1, 1);
+    c4069->SetLink(2, *inputF2, 1);
+    nts::Tristate_dump(output->Compute(1));
+    std::cout << std::endl;
+
+    c4069->SetLink(1, *inputF1, 1);
+    c4069->SetLink(2, *inputT2, 1);
+    nts::Tristate_dump(output->Compute(1));
+    std::cout << std::endl;
+
+    c4069->SetLink(1, *inputF1, 1);
+    c4069->SetLink(2, *inputF2, 1);
+    nts::Tristate_dump(output->Compute(1));
+    std::cout << std::endl;
+*/
+    output->SetLink(1, *c4069, 2);
+
+    c4069->SetLink(1, *inputT1, 1);
+    nts::Tristate_dump(output->Compute(1));
+    std::cout << std::endl;
+
+    c4069->SetLink(1, *inputF1, 1);
+    nts::Tristate_dump(output->Compute(1));
+    std::cout << std::endl;
+
+    delete inputT1;
+    delete inputT2;
+    delete inputF1;
+    delete inputF2;
+    delete c4069;
+    delete output;
+
     return (0);
 }
