@@ -5,9 +5,9 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QtWidgets/QGraphicsItem>
 
-#include "Port.h"
-#include "Connection.h"
-#include "Block.h"
+#include "src/editor/elements/Port.h"
+#include "src/editor/elements/Connection.h"
+#include "src/editor/elements/Block.h"
 
 Editor::Editor(QObject *parent) :
         QObject(parent) {

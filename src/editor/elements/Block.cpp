@@ -15,7 +15,7 @@ Block::Block(QGraphicsItem *parent) : QGraphicsPathItem(parent) {
     setBrush(Qt::green);
     setFlag(QGraphicsItem::ItemIsMovable);
     setFlag(QGraphicsItem::ItemIsSelectable);
-    horzMargin = 20;
+    horzMargin = 40;
     vertMargin = 5;
     width = horzMargin;
     height = vertMargin;
@@ -74,6 +74,7 @@ void Block::addOutputPorts(const QStringList &names) {
 }
 
 #include <QStyleOptionGraphicsItem>
+#include <QtGui/QLinearGradient>
 
 void Block::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     Q_UNUSED(option)

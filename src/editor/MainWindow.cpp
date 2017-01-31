@@ -1,9 +1,9 @@
 #include "MainWindow.h"
 
-#include "Block.h"
+#include "src/editor/elements/Block.h"
 #include "Editor.h"
 
-#include "Port.h"
+#include "src/editor/elements/Port.h"
 
 MainWindow::MainWindow(QWidget *parent) :
         QMainWindow(parent) {
