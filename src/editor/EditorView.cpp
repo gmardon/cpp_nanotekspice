@@ -1,6 +1,7 @@
 //
 // Created by gmardon on 31/01/17.
 //
+#include <QtWidgets/QGraphicsItem>
 #include "EditorView.h"
 
 static const int GRID_STEP = 30;
@@ -15,7 +16,10 @@ EditorView::EditorView() : QGraphicsView() {}
 
 void EditorView::drawBackground(QPainter *painter, const QRectF &rect) {
     int step = GRID_STEP;
-    painter->setBrush(QBrush("#3C3C3C"));
+
+    painter->setBrush(QBrush("#353535"));
+    painter->drawRect(rect);
+    painter->setPen(QColor("#3C3C3C"));
     // draw horizontal grid
     qreal start = round(rect.top(), step);
     if (start > rect.top()) {
@@ -34,6 +38,4 @@ void EditorView::drawBackground(QPainter *painter, const QRectF &rect) {
         x += step;
         painter->drawLine(x, rect.top(), x, rect.bottom());
     }
-    painter->setBackgroundMode(Qt::OpaqueMode);
-    painter->setBackground(QBrush("#353535"));
 }
