@@ -1,24 +1,24 @@
-#include "c4011.hpp"
+#include "c4069.hpp"
 
 namespace nts
 {
-    c4011::c4011()
+    c4069::c4069()
     {
         this->pins[0].setMode(nts::Pin::I);
-        this->pins[1].setMode(nts::Pin::I);
-        this->pins[2].setMode(nts::Pin::O);
+        this->pins[1].setMode(nts::Pin::O);
+        this->pins[2].setMode(nts::Pin::I);
         this->pins[3].setMode(nts::Pin::O);
         this->pins[4].setMode(nts::Pin::I);
-        this->pins[5].setMode(nts::Pin::I);
+        this->pins[5].setMode(nts::Pin::O);
         this->pins[6].setMode(nts::Pin::I);
-        this->pins[7].setMode(nts::Pin::I);
-        this->pins[8].setMode(nts::Pin::O);
+        this->pins[7].setMode(nts::Pin::O);
+        this->pins[8].setMode(nts::Pin::I);
         this->pins[9].setMode(nts::Pin::O);
         this->pins[10].setMode(nts::Pin::I);
-        this->pins[11].setMode(nts::Pin::I);
+        this->pins[11].setMode(nts::Pin::O);
     }
 
-    nts::Tristate c4011::Compute(std::size_t pin_num_this)
+    nts::Tristate c4069::Compute(std::size_t pin_num_this)
     {
         if (pin_num_this < 1 || pin_num_this > 12)
             return (UNDEFINED);
@@ -27,13 +27,12 @@ namespace nts
             return (this->pins[pin_num_this].compute());
         else
         {
-            Tristate t1 = this->pins[pin_num_this + ((pin_num_this % 2) ? (1) : (-1))].compute();
-            Tristate t2 = this->pins[pin_num_this + ((pin_num_this % 2) ? (2) : (-2))].compute();
-            return (!(t1 && t2));
+            Tristate t = this->pins[pin_num_this - 1].compute();
+            return (!t);
         }
     }
 
-    void c4011::SetLink(std::size_t pin_num_this, nts::IComponent &component, std::size_t pin_num_target)
+    void c4069::SetLink(std::size_t pin_num_this, nts::IComponent &component, std::size_t pin_num_target)
     {
         if (pin_num_this < 1 || pin_num_this > 12)
             return ;
@@ -42,12 +41,12 @@ namespace nts
         this->pins[pin_num_this].setTarget(pin_num_target);        
     }
 
-    void c4011::Dump(void) const
+    void c4069::Dump(void) const
     {
-        std::cout << "Chipset 4011" << std::endl;
+        std::cout << "Chipset 4069" << std::endl;
     }
 
-    c4011::~c4011(void)
+    c4069::~c4069(void)
     {
     }
 }
