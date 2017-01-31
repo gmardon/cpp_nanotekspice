@@ -21,7 +21,6 @@ namespace nts
         virtual ~c4001(void);
 
     private:
-        std::string name;
         std::array<Pin, 12> pins;
     };
 }

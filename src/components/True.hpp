@@ -21,7 +21,6 @@ namespace nts
         virtual ~True(void);
 
     private:
-        std::string name;
         std::array<Pin, 1> pins;
     };
 }

@@ -2,7 +2,7 @@
 
 namespace nts
 {
-    True::True() : name("Input True")
+    True::True()
     {
         this->pins[0].setMode(nts::Pin::I);
         this->pins[0].setState(TRUE);
@@ -25,7 +25,7 @@ namespace nts
 
     void True::Dump(void) const
     {
-        std::cout << this->name << std::endl;
+        std::cout << "Input true" << std::endl;
     }
 
     True::~True(void)

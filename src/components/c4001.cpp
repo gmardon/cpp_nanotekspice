@@ -2,7 +2,7 @@
 
 namespace nts
 {
-    c4001::c4001() : name("Chipset 4001")
+    c4001::c4001()
     {
         this->pins[0].setMode(nts::Pin::I);
         this->pins[1].setMode(nts::Pin::I);
@@ -22,11 +22,10 @@ namespace nts
     {
         if (pin_num_this < 1 || pin_num_this > 12)
             return (UNDEFINED);
-        pin_num_this--;
         if (pin_num_this % 3)
-            return (this->pins[pin_num_this].compute());
+            return (this->pins[pin_num_this - 1].compute());
         else
-            return (this->pins[pin_num_this - 2].compute() && this->pins[pin_num_this - 1].compute());
+            return (this->pins[pin_num_this - 3].compute() && this->pins[pin_num_this - 2].compute());
     }
 
     void c4001::SetLink(std::size_t pin_num_this, nts::IComponent &component, std::size_t pin_num_target)
@@ -40,7 +39,7 @@ namespace nts
 
     void c4001::Dump(void) const
     {
-        std::cout << this->name << std::endl;
+        std::cout << "Chipset 4001" << std::endl;
     }
 
     c4001::~c4001(void)

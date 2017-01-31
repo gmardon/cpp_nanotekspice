@@ -2,7 +2,7 @@
 
 namespace nts
 {
-    Output::Output() : name("Output")
+    Output::Output()
     {
         this->pins[0].setMode(nts::Pin::O);
     }
@@ -24,7 +24,7 @@ namespace nts
 
     void Output::Dump(void) const
     {
-        std::cout << this->name << std::endl;
+        std::cout << "Output" << std::endl;
     }
 
     Output::~Output(void)
