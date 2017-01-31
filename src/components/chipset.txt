@@ -1,5 +1,3 @@
-4013 : Dual Flip Flop.
-
 4017 : 10bits Johnson decade.
 
 4040 : 12 bits counter.
