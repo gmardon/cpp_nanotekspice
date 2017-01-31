@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wall -Werror -std=c++11")
 
-set(SOURCE_FILES main.cpp src/editor/elements/Block.cpp src/editor/elements/Connection.cpp src/editor/MainWindow.cpp src/editor/elements/Port.cpp src/editor/Editor.cpp src/editor/EditorView.cpp src/editor/EditorView.h)
+set(SOURCE_FILES src/components/c4001.cpp src/components/Pin.cpp src/components/Tristate.cpp src/components/Output.cpp src/components/True.cpp main.cpp src/editor/elements/Block.cpp src/editor/elements/Connection.cpp src/editor/MainWindow.cpp src/editor/elements/Port.cpp src/editor/Editor.cpp src/editor/EditorView.cpp src/editor/EditorView.h)
 add_executable(cpp_nanotekspice ${SOURCE_FILES})
 
 target_link_libraries(cpp_nanotekspice ${CURSES_LIBRARIES})

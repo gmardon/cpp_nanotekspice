@@ -5,27 +5,29 @@
 #include <QtWidgets>
 #include "EditorView.h"
 
-class Editor;
 
-class MainWindow : public QMainWindow {
-Q_OBJECT
+namespace nts {
+    class Editor;
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
+    class MainWindow : public QMainWindow {
+    Q_OBJECT
 
-    ~MainWindow();
+    public:
+        explicit MainWindow(QWidget *parent = 0);
 
-private slots:
+        ~MainWindow();
 
-    void saveFile();
+    private slots:
 
-    void loadFile();
+        void saveFile();
 
-private:
-    Editor *nodesEditor;
-    QMenu *fileMenu;
-    EditorView *view;
-    QGraphicsScene *scene;
-};
+        void loadFile();
 
+    private:
+        Editor *nodesEditor;
+        QMenu *fileMenu;
+        EditorView *view;
+        QGraphicsScene *scene;
+    };
+}
 #endif // QNEMAINWINDOW_H

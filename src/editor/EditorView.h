@@ -7,12 +7,14 @@
 
 #include <QGraphicsView>
 
-class EditorView : public QGraphicsView {
-public:
-    EditorView();
+namespace nts {
+    class EditorView : public QGraphicsView {
+    public:
+        EditorView();
 
-protected:
-    void drawBackground(QPainter *painter, const QRectF &rect);
-};
+    protected:
+        void drawBackground(QPainter *painter, const QRectF &rect);
+    };
+}
 
 #endif // EDITORVIEW_H
