@@ -7,22 +7,24 @@
 
 class Editor;
 
-class MainWindow : public QMainWindow
-{
-	Q_OBJECT
+class MainWindow : public QMainWindow {
+Q_OBJECT
 
 public:
-	explicit MainWindow(QWidget *parent = 0);
-	~MainWindow();
+    explicit MainWindow(QWidget *parent = 0);
+
+    ~MainWindow();
 
 private slots:
-	void saveFile();
-	void loadFile();
+
+    void saveFile();
+
+    void loadFile();
 
 private:
-	Editor *nodesEditor;
+    Editor *nodesEditor;
     QMenu *fileMenu;
-	EditorView *view;
+    EditorView *view;
     QGraphicsScene *scene;
 };
 

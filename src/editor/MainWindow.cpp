@@ -3,15 +3,10 @@
 #include "Block.h"
 #include "Editor.h"
 
-#include <QGraphicsScene>
-#include <QFileDialog>
-
 #include "Port.h"
-#include "EditorView.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent)
-{
+        QMainWindow(parent) {
     scene = new QGraphicsScene();
 
     QAction *quitAct = new QAction(tr("&Quit"), this);
@@ -40,7 +35,8 @@ MainWindow::MainWindow(QWidget *parent) :
     view = new EditorView();
     view->setScene(scene);
 
-    view->setRenderHint(QPainter::Antialiasing, true);
+    // view->setRenderHint(QPainter::Antialiasing, true);
+    // in near-future, active this
 
     this->setCentralWidget(view);
 
@@ -67,31 +63,28 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setMinimumHeight(640);
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
 
 }
 
-void MainWindow::saveFile()
-{
-	QString fname = QFileDialog::getSaveFileName();
-	if (fname.isEmpty())
-		return;
+void MainWindow::saveFile() {
+    QString fname = QFileDialog::getSaveFileName();
+    if (fname.isEmpty())
+        return;
 
-	QFile f(fname);
-	f.open(QFile::WriteOnly);
-	QDataStream ds(&f);
-	nodesEditor->save(ds);
+    QFile f(fname);
+    f.open(QFile::WriteOnly);
+    QDataStream ds(&f);
+    nodesEditor->save(ds);
 }
 
-void MainWindow::loadFile()
-{
-	QString fname = QFileDialog::getOpenFileName();
-	if (fname.isEmpty())
-		return;
+void MainWindow::loadFile() {
+    QString fname = QFileDialog::getOpenFileName();
+    if (fname.isEmpty())
+        return;
 
-	QFile f(fname);
-	f.open(QFile::ReadOnly);
-	QDataStream ds(&f);
-	nodesEditor->load(ds);
+    QFile f(fname);
+    f.open(QFile::ReadOnly);
+    QDataStream ds(&f);
+    nodesEditor->load(ds);
 }

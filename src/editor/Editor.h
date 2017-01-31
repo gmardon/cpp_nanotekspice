@@ -29,31 +29,35 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include <QObject>
 
 class QGraphicsScene;
+
 class Connection;
+
 class QGraphicsItem;
+
 class QPointF;
+
 class Block;
 
-class Editor : public QObject
-{
-	Q_OBJECT
+class Editor : public QObject {
+Q_OBJECT
 public:
-	explicit Editor(QObject *parent = 0);
+    explicit Editor(QObject *parent = 0);
 
-	void install(QGraphicsScene *scene);
+    void install(QGraphicsScene *scene);
 
-	bool eventFilter(QObject *, QEvent *);
+    bool eventFilter(QObject *, QEvent *);
 
-	void save(QDataStream &ds);
-	void load(QDataStream &ds);
+    void save(QDataStream &ds);
 
-private:
-	QGraphicsItem *itemAt(const QPointF&);
+    void load(QDataStream &ds);
 
 private:
-	QGraphicsScene *scene;
-	Connection *conn;
-	// QNEBlock *selBlock;
+    QGraphicsItem *itemAt(const QPointF &);
+
+private:
+    QGraphicsScene *scene;
+    Connection *conn;
+    // QNEBlock *selBlock;
 };
 
 #endif // QNODESEDITOR_H
