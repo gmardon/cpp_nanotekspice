@@ -21,7 +21,7 @@ namespace nts
         virtual ~c4069(void);
 
     private:
-        std::array<Pin, 12> pins;
+        std::array<Pin, 14> pins;
     };
 }
 #endif

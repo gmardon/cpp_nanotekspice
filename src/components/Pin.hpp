@@ -17,6 +17,8 @@ namespace nts
             I,
             O,
             IO,
+            VSS,
+            VDD
         };
 
     public:

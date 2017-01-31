@@ -10,17 +10,19 @@ namespace nts
         this->pins[3].setMode(nts::Pin::O);
         this->pins[4].setMode(nts::Pin::I);
         this->pins[5].setMode(nts::Pin::I);
-        this->pins[6].setMode(nts::Pin::I);
+        this->pins[6].setMode(nts::Pin::VSS);
         this->pins[7].setMode(nts::Pin::I);
-        this->pins[8].setMode(nts::Pin::O);
+        this->pins[8].setMode(nts::Pin::I);
         this->pins[9].setMode(nts::Pin::O);
-        this->pins[10].setMode(nts::Pin::I);
+        this->pins[10].setMode(nts::Pin::O);
         this->pins[11].setMode(nts::Pin::I);
+        this->pins[12].setMode(nts::Pin::I);
+        this->pins[13].setMode(nts::Pin::VDD);
     }
 
     nts::Tristate c4011::Compute(std::size_t pin_num_this)
     {
-        if (pin_num_this < 1 || pin_num_this > 12)
+        if (pin_num_this < 1 || pin_num_this > 13 || pin_num_this == 7)
             return (UNDEFINED);
         pin_num_this--;
         if (this->pins[pin_num_this].getMode() == Pin::I)
@@ -35,7 +37,7 @@ namespace nts
 
     void c4011::SetLink(std::size_t pin_num_this, nts::IComponent &component, std::size_t pin_num_target)
     {
-        if (pin_num_this < 1 || pin_num_this > 12)
+        if (pin_num_this < 1 || pin_num_this > 13 || pin_num_this == 7)
             return ;
         pin_num_this--;
         this->pins[pin_num_this].setComponent(component);        

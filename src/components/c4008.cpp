@@ -11,6 +11,7 @@ namespace nts
         this->pins[4].setMode(nts::Pin::I);
         this->pins[5].setMode(nts::Pin::I);
         this->pins[6].setMode(nts::Pin::I);
+        this->pins[7].setMode(nts::Pin::VSS);
         this->pins[8].setMode(nts::Pin::I);
         this->pins[9].setMode(nts::Pin::O);
         this->pins[10].setMode(nts::Pin::O);
@@ -18,11 +19,12 @@ namespace nts
         this->pins[12].setMode(nts::Pin::O);
         this->pins[13].setMode(nts::Pin::O);
         this->pins[14].setMode(nts::Pin::I);
+        this->pins[15].setMode(nts::Pin::VDD);
     }
 
     nts::Tristate c4008::Compute(std::size_t pin_num_this)
     {
-        if (pin_num_this < 1 || pin_num_this > 16)
+        if (pin_num_this < 1 || pin_num_this > 16 || pin_num_this == 8)
             return (UNDEFINED);
         pin_num_this--;
         if (this->pins[pin_num_this].getMode() == Pin::I)
@@ -59,7 +61,7 @@ namespace nts
 
     void c4008::SetLink(std::size_t pin_num_this, nts::IComponent &component, std::size_t pin_num_target)
     {
-        if (pin_num_this < 1 || pin_num_this > 16)
+        if (pin_num_this < 1 || pin_num_this > 16 || pin_num_this == 8)
             return ;
         pin_num_this--;
         this->pins[pin_num_this].setComponent(component);        
