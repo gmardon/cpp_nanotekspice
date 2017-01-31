@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QtWidgets>
+#include "EditorView.h"
 
 class Editor;
 
@@ -21,7 +22,7 @@ private slots:
 private:
 	Editor *nodesEditor;
     QMenu *fileMenu;
-    QGraphicsView *view;
+	EditorView *view;
     QGraphicsScene *scene;
 };
 

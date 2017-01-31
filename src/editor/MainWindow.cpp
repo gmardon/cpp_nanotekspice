@@ -1,5 +1,4 @@
 #include "MainWindow.h"
-#include "ui_qnemainwindow.h"
 
 #include "Block.h"
 #include "Editor.h"
@@ -8,6 +7,7 @@
 #include <QFileDialog>
 
 #include "Port.h"
+#include "EditorView.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
@@ -37,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     setWindowTitle(tr("Nanotekspice"));
 
-    view = new QGraphicsView();
+    view = new EditorView();
     view->setScene(scene);
 
     view->setRenderHint(QPainter::Antialiasing, true);
