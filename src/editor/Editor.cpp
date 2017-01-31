@@ -57,8 +57,6 @@ bool Editor::eventFilter(QObject *o, QEvent *e) {
                     QGraphicsItem *item = itemAt(me->scenePos());
                     if (item && (item->type() == Connection::Type || item->type() == Block::Type))
                         delete item;
-                    // if (selBlock == (QNEBlock*) item)
-                    // selBlock = 0;
                     break;
                 }
             }
@@ -95,37 +93,6 @@ bool Editor::eventFilter(QObject *o, QEvent *e) {
             break;
         }
     }
+    this->scene->update();
     return QObject::eventFilter(o, e);
-}
-
-void Editor::save(QDataStream &ds) {
-            foreach(QGraphicsItem *item, scene->items()) if (item->type() == Block::Type) {
-                ds << item->type();
-                ((Block *) item)->save(ds);
-            }
-
-            foreach(QGraphicsItem *item, scene->items()) if (item->type() == Connection::Type) {
-                ds << item->type();
-                ((Connection *) item)->save(ds);
-            }
-}
-
-void Editor::load(QDataStream &ds) {
-    scene->clear();
-
-    QMap<quint64, Port *> portMap;
-
-    while (!ds.atEnd()) {
-        int type;
-        ds >> type;
-        if (type == Block::Type) {
-            Block *block = new Block(0);
-            scene->addItem(block);
-            block->load(ds, portMap);
-        } else if (type == Connection::Type) {
-            Connection *conn = new Connection(0);
-            scene->addItem(conn);
-            conn->load(ds, portMap);
-        }
-    }
 }

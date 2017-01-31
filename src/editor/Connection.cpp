@@ -72,20 +72,3 @@ Port *Connection::port1() const {
 Port *Connection::port2() const {
     return m_port2;
 }
-
-void Connection::save(QDataStream &ds) {
-    ds << (quint64) m_port1;
-    ds << (quint64) m_port2;
-}
-
-void Connection::load(QDataStream &ds, const QMap<quint64, Port *> &portMap) {
-    quint64 ptr1;
-    quint64 ptr2;
-    ds >> ptr1;
-    ds >> ptr2;
-
-    setPort1(portMap[ptr1]);
-    setPort2(portMap[ptr2]);
-    updatePosFromPorts();
-    updatePath();
-}

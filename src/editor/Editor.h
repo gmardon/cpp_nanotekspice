@@ -47,17 +47,12 @@ public:
 
     bool eventFilter(QObject *, QEvent *);
 
-    void save(QDataStream &ds);
-
-    void load(QDataStream &ds);
-
 private:
     QGraphicsItem *itemAt(const QPointF &);
 
 private:
     QGraphicsScene *scene;
     Connection *conn;
-    // QNEBlock *selBlock;
 };
 
 #endif // QNODESEDITOR_H

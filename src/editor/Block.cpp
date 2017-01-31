@@ -48,9 +48,9 @@ Port *Block::addPort(const QString &name, bool isOutput, int flags, int ptr) {
 
             Port *port = (Port *) port_;
             if (port->isOutput())
-                port->setPos(width / 2 + port->radius(), y);
+                port->setPos(5 + width / 2 + port->radius(), y);
             else
-                port->setPos(-width / 2 - port->radius(), y);
+                port->setPos(-3 + -width / 2 - port->radius(), y);
             y += h;
         }
 
@@ -71,52 +71,6 @@ void Block::addInputPorts(const QStringList &names) {
 
 void Block::addOutputPorts(const QStringList &names) {
             foreach(QString n, names) addOutputPort(n);
-}
-
-void Block::save(QDataStream &ds) {
-    ds << pos();
-
-    int count(0);
-
-            foreach(QGraphicsItem *port_, childItems()) {
-            if (port_->type() != Port::Type)
-                continue;
-
-            count++;
-        }
-
-    ds << count;
-
-            foreach(QGraphicsItem *port_, childItems()) {
-            if (port_->type() != Port::Type)
-                continue;
-
-            Port *port = (Port *) port_;
-            ds << (quint64) port;
-            ds << port->portName();
-            ds << port->isOutput();
-            ds << port->portFlags();
-        }
-}
-
-void Block::load(QDataStream &ds, QMap<quint64, Port *> &portMap) {
-    QPointF p;
-    ds >> p;
-    setPos(p);
-    int count;
-    ds >> count;
-    for (int i = 0; i < count; i++) {
-        QString name;
-        bool output;
-        int flags;
-        quint64 ptr;
-
-        ds >> ptr;
-        ds >> name;
-        ds >> output;
-        ds >> flags;
-        portMap[ptr] = addPort(name, output, flags, ptr);
-    }
 }
 
 #include <QStyleOptionGraphicsItem>

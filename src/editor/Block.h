@@ -23,10 +23,6 @@ public:
 
     void addOutputPorts(const QStringList &names);
 
-    void save(QDataStream &);
-
-    void load(QDataStream &, QMap<quint64, Port *> &portMap);
-
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
     Block *clone();

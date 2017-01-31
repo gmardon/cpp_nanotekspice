@@ -31,10 +31,6 @@ public:
 
     Port *port2() const;
 
-    void save(QDataStream &);
-
-    void load(QDataStream &, const QMap<quint64, Port *> &portMap);
-
     int type() const { return Type; }
 
 private:

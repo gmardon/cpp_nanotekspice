@@ -46,12 +46,8 @@ MainWindow::MainWindow(QWidget *parent) :
     Block *b = new Block(0);
     scene->addItem(b);
     b->addPort("test", 0, Port::NamePort);
-    b->addInputPort("in1");
-    b->addInputPort("in2");
-    b->addInputPort("in3");
-    b->addOutputPort("out1");
-    b->addOutputPort("out2");
-    b->addOutputPort("out3");
+    b->addInputPort("in");
+    b->addOutputPort("out");
 
     b = b->clone();
     b->setPos(150, 0);
@@ -75,7 +71,6 @@ void MainWindow::saveFile() {
     QFile f(fname);
     f.open(QFile::WriteOnly);
     QDataStream ds(&f);
-    nodesEditor->save(ds);
 }
 
 void MainWindow::loadFile() {
@@ -86,5 +81,4 @@ void MainWindow::loadFile() {
     QFile f(fname);
     f.open(QFile::ReadOnly);
     QDataStream ds(&f);
-    nodesEditor->load(ds);
 }
