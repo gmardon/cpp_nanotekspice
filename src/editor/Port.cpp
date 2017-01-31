@@ -20,7 +20,7 @@ Port::Port(QGraphicsItem *parent):
 	setPath(p);
 
 	setPen(QPen(Qt::darkRed));
-	setBrush(Qt::red);
+	setBrush(Qt::black);
 
 	setFlag(QGraphicsItem::ItemSendsScenePositionChanges);
 

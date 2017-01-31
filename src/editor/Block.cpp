@@ -12,7 +12,7 @@ Block::Block(QGraphicsItem *parent) : QGraphicsPathItem(parent)
 	QPainterPath p;
 	p.addRoundedRect(-50, -15, 100, 30, 5, 5);
 	setPath(p);
-	setPen(QPen(Qt::darkGreen));
+	setPen(QPen(Qt::white));
 	setBrush(Qt::green);
 	setFlag(QGraphicsItem::ItemIsMovable);
 	setFlag(QGraphicsItem::ItemIsSelectable);
@@ -143,8 +143,8 @@ void Block::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 		painter->setPen(QPen(Qt::darkYellow));
 		painter->setBrush(Qt::yellow);
 	} else {
-		painter->setPen(QPen(Qt::darkGreen));
-		painter->setBrush(Qt::green);
+		painter->setPen(QPen(Qt::black));
+		painter->setBrush(Qt::white);
 	}
 
 	painter->drawPath(path());
