@@ -1,0 +1,17 @@
+4008 : 4bits adder.
+
+4013 : Dual Flip Flop.
+
+4017 : 10bits Johnson decade.
+
+4040 : 12 bits counter.
+
+4094 : 8bits shift register.
+
+4514 : 4bits decoder.
+
+4801 : Random access memory.
+
+2716 : Read only memory. 2716 must takes a value when declared. In the .chipsets:
+section, you must precise a file that will contain the data written in the ROM: 2716
+rom(cp_m.dat)
