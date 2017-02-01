@@ -9,6 +9,7 @@
 # include "c4008.hpp"
 # include "c4011.hpp"
 # include "c4013.hpp"
+# include "c4017.hpp"
 # include "c4030.hpp"
 # include "c4069.hpp"
 # include "c4071.hpp"
