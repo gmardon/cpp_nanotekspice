@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QtWidgets>
+#include <src/components/IComponent.hpp>
 #include "EditorView.h"
 
 
@@ -17,6 +18,8 @@ namespace nts {
 
         ~MainWindow();
 
+        void setComponents(std::vector<IComponent*> components);
+
     private slots:
 
         void saveFile();
@@ -28,6 +31,8 @@ namespace nts {
         QMenu *fileMenu;
         EditorView *view;
         QGraphicsScene *scene;
+
+        const char* getComponentName(nts::IComponent *component);
     };
 }
 #endif // QNEMAINWINDOW_H

@@ -4,6 +4,8 @@
 #include <src/components/c4001.hpp>
 #include <src/components/Output.hpp>
 #include "src/editor/MainWindow.h"
+#include <typeinfo>
+#include <cxxabi.h>
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
@@ -18,6 +20,14 @@ int main(int argc, char *argv[]) {
     c4001->SetLink(1, *input1, 1);
     c4001->SetLink(2, *input2, 1);
     output->SetLink(1, *c4001, 3);
+
+    std::vector<nts::IComponent*> *v = new std::vector<nts::IComponent*>();
+    v->push_back(input1);
+    v->push_back(input2);
+    v->push_back(c4001);
+    v->push_back(output);
+
+    w.setComponents(*v);
 
     return a.exec();
 }

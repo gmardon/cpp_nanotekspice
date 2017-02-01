@@ -4,6 +4,10 @@
 #include "Editor.h"
 
 #include "src/editor/elements/Port.h"
+#include <typeinfo>
+#include <iostream>
+#include <cxxabi.h>
+#include <src/components/Pin.hpp>
 
 namespace nts {
 
@@ -45,7 +49,7 @@ namespace nts {
         nodesEditor = new Editor(this);
         nodesEditor->install(scene);
 
-        Block *b = new Block(0);
+       /* Block *b = new Block(0);
         scene->addItem(b);
         b->addPort("test", 0, Port::NamePort);
         b->addInputPort("in");
@@ -56,7 +60,7 @@ namespace nts {
 
         b = b->clone();
         b->setPos(150, 150);
-
+*/
         this->setMinimumWidth(480);
         this->setMinimumHeight(640);
     }
@@ -83,5 +87,29 @@ namespace nts {
         QFile f(fname);
         f.open(QFile::ReadOnly);
         QDataStream ds(&f);
+    }
+
+    const char* MainWindow::getComponentName(nts::IComponent *component) {
+        char   *realname;
+        const std::type_info  &ti = typeid(*component);
+        realname = abi::__cxa_demangle(ti.name(), 0, 0, new int);
+        return (realname);
+    }
+
+    void MainWindow::setComponents(std::vector<IComponent*> components)
+    {
+        for (const auto& component : components)
+        {
+            const char *name = getComponentName(component);
+
+            Block *b = new Block(0);
+            scene->addItem(b);
+            b->addPort(name, 0, Port::NamePort);
+            b->addInputPort("in");
+            b->addOutputPort("out");
+
+            printf("NAME: %s\n", name);
+        }
+
     }
 }
