@@ -11,7 +11,13 @@ namespace nts
     nts::Tristate Input::Compute(std::size_t pin_num_this)
     {
         if (pin_num_this != 1)
+        {
+            if (pin_num_this == 2)
+                this->pins[0].setState(TRUE);
+            else if (pin_num_this == 3)
+                this->pins[0].setState(FALSE);
             return (UNDEFINED);
+        }
         return (this->pins[0].getState());
     }
 

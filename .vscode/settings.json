@@ -16,6 +16,8 @@
         "typeinfo": "cpp",
         "cwctype": "cpp",
         "iostream": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "*hsystem_error": "cpp",
+        "system_error": "cpp"
     }
 }
