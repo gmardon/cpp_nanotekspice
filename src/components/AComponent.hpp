@@ -19,6 +19,10 @@ namespace nts
         virtual void Dump(void) const = 0;
         virtual ~AComponent(void) {}
 
+    public:
+        const std::string &getName() const;
+        const std::vector<Pin> &getPins() const;
+
     protected:
         std::string name;
         std::vector<Pin> pins;
