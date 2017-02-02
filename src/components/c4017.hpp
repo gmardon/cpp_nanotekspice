@@ -1,17 +1,11 @@
 #ifndef c4017_HPP_
 # define c4017_HPP_
 
-# include <string>
-# include <iostream>
-# include <array>
-
-# include "IComponent.hpp"
-# include "Pin.hpp"
-# include "Tristate.hpp"
+# include "AComponent.hpp"
 
 namespace nts
 {
-    class c4017 : public IComponent
+    class c4017 : public AComponent
     {
     public:
         c4017();
@@ -24,7 +18,6 @@ namespace nts
         int value;
         Tristate prevClock0;
         Tristate prevClock1;
-        std::array<Pin, 16> pins;
     };
 }
 

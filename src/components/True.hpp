@@ -1,17 +1,11 @@
 #ifndef TRUE_HPP_
 # define TRUE_HPP_
 
-# include <string>
-# include <iostream>
-# include <array>
-
-# include "IComponent.hpp"
-# include "Pin.hpp"
-# include "Tristate.hpp"
+# include "AComponent.hpp"
 
 namespace nts
 {
-    class True : public IComponent
+    class True : public AComponent
     {
     public:
         True();
@@ -19,9 +13,6 @@ namespace nts
         virtual void SetLink(std::size_t pin_num_this, nts::IComponent &component, std::size_t pin_num_target);
         virtual void Dump(void) const;
         virtual ~True(void);
-
-    private:
-        std::array<Pin, 1> pins;
     };
 }
 

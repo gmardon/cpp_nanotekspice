@@ -18,6 +18,7 @@
         "iostream": "cpp",
         "string": "cpp",
         "*hsystem_error": "cpp",
-        "system_error": "cpp"
+        "system_error": "cpp",
+        "array": "cpp"
     }
 }

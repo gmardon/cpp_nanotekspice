@@ -1,17 +1,11 @@
 #ifndef c4001_HPP_
 # define c4001_HPP_
 
-# include <string>
-# include <iostream>
-# include <vector>
-
-# include "IComponent.hpp"
-# include "Pin.hpp"
-# include "Tristate.hpp"
+# include "AComponent.hpp"
 
 namespace nts
 {
-    class c4001 : public IComponent
+    class c4001 : public AComponent
     {
     public:
         c4001();
@@ -19,9 +13,6 @@ namespace nts
         virtual void SetLink(std::size_t pin_num_this, nts::IComponent &component, std::size_t pin_num_target);
         virtual void Dump(void) const;
         virtual ~c4001(void);
-
-    private:
-        std::vector<Pin> pins;
     };
 }
 

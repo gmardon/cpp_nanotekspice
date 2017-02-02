@@ -1,17 +1,11 @@
 #ifndef INPUT_HPP_
 # define INPUT_HPP_
 
-# include <string>
-# include <iostream>
-# include <array>
-
-# include "IComponent.hpp"
-# include "Pin.hpp"
-# include "Tristate.hpp"
+# include "AComponent.hpp"
 
 namespace nts
 {
-    class Input : public IComponent
+    class Input : public AComponent
     {
     public:
         Input(Tristate state = UNDEFINED);
@@ -19,9 +13,6 @@ namespace nts
         virtual void SetLink(std::size_t pin_num_this, nts::IComponent &component, std::size_t pin_num_target);
         virtual void Dump(void) const;
         virtual ~Input(void);
-
-    private:
-        std::array<Pin, 1> pins;
     };
 }
 
