@@ -2,7 +2,7 @@
 
 namespace nts
 {
-    Pin::Pin() : mode(U), component(0), state(UNDEFINED), target_pin(0)
+    Pin::Pin(Mode _mode) : mode(_mode), component(0), state(UNDEFINED), target_pin(0)
     {
     }
 

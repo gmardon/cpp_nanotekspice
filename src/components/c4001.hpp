@@ -3,7 +3,7 @@
 
 # include <string>
 # include <iostream>
-# include <array>
+# include <vector>
 
 # include "IComponent.hpp"
 # include "Pin.hpp"
@@ -21,7 +21,7 @@ namespace nts
         virtual ~c4001(void);
 
     private:
-        std::array<Pin, 14> pins;
+        std::vector<Pin> pins;
     };
 }
 

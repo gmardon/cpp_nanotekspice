@@ -22,7 +22,7 @@ namespace nts
         };
 
     public:
-        Pin();
+        Pin(Mode = U);
         Pin(const Pin &);
         ~Pin();
         const Pin &operator=(const Pin &);
