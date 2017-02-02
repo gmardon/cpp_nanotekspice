@@ -5,7 +5,7 @@
 
 namespace nts
 {
-    class Clock : public IComponent
+    class Clock : public AComponent
     {
     public:
         Clock();

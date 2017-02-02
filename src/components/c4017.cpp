@@ -4,22 +4,22 @@ namespace nts
 {
     c4017::c4017() : value(0), prevClock0(FALSE), prevClock1(FALSE)
     {
-        this->pins[0].setMode(nts::Pin::O);
-        this->pins[1].setMode(nts::Pin::O);
-        this->pins[2].setMode(nts::Pin::O);
-        this->pins[3].setMode(nts::Pin::O);
-        this->pins[4].setMode(nts::Pin::O);
-        this->pins[5].setMode(nts::Pin::O);
-        this->pins[6].setMode(nts::Pin::O);
-        this->pins[7].setMode(nts::Pin::VSS);
-        this->pins[8].setMode(nts::Pin::O);
-        this->pins[9].setMode(nts::Pin::O);
-        this->pins[10].setMode(nts::Pin::O);
-        this->pins[11].setMode(nts::Pin::O);
-        this->pins[12].setMode(nts::Pin::I);
-        this->pins[13].setMode(nts::Pin::I);
-        this->pins[14].setMode(nts::Pin::I);
-        this->pins[15].setMode(nts::Pin::VDD);
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::VSS});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::VDD});
     }
 
     nts::Tristate c4017::Compute(std::size_t pin_num_this)
@@ -40,7 +40,7 @@ namespace nts
             this->value = (this->value + 1) % 10;
         this->prevClock0 = C0;
         this->prevClock1 = C1;
-        std::array<int, 11> values = {{5, 1, 0, 2, 6, 7, 3, 0, 8, 4, 9}};
+        std::vector<int> values = {{5, 1, 0, 2, 6, 7, 3, 0, 8, 4, 9}};
         if (values[pin_num_this] == this->value || (pin_num_this == 11 && this->value < 5))
             return (TRUE);
         else

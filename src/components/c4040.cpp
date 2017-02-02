@@ -4,22 +4,22 @@ namespace nts
 {
     c4040::c4040() : value(0), prevClock(FALSE)
     {
-        this->pins[0].setMode(nts::Pin::O);
-        this->pins[1].setMode(nts::Pin::O);
-        this->pins[2].setMode(nts::Pin::O);
-        this->pins[3].setMode(nts::Pin::O);
-        this->pins[4].setMode(nts::Pin::O);
-        this->pins[5].setMode(nts::Pin::O);
-        this->pins[6].setMode(nts::Pin::O);
-        this->pins[7].setMode(nts::Pin::VSS);
-        this->pins[8].setMode(nts::Pin::O);
-        this->pins[9].setMode(nts::Pin::I);
-        this->pins[10].setMode(nts::Pin::I);
-        this->pins[11].setMode(nts::Pin::O);
-        this->pins[12].setMode(nts::Pin::O);
-        this->pins[13].setMode(nts::Pin::O);
-        this->pins[14].setMode(nts::Pin::O);
-        this->pins[15].setMode(nts::Pin::VDD);
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::VSS});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::VDD});
     }
 
     nts::Tristate c4040::Compute(std::size_t pin_num_this)
@@ -38,7 +38,7 @@ namespace nts
         else if (C == FALSE && this->prevClock == TRUE)
             this->value = (this->value + 1) % 10;
         this->prevClock = C;
-        std::array<int, 13> values = {{12, 6, 5, 7, 4, 3, 2, 0, 1, 0, 0, 9, 8}};
+        std::vector<int> values = {{12, 6, 5, 7, 4, 3, 2, 0, 1, 0, 0, 9, 8}};
         int val = values[pin_num_this];
         if ((this->value >> val) & 1)
             return (TRUE);

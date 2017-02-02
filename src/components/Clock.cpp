@@ -4,7 +4,7 @@ namespace nts
 {
     Clock::Clock()
     {
-        this->pins[0].setMode(nts::Pin::I);
+        this->pins.push_back(Pin{nts::Pin::I});
         this->pins[0].setState(FALSE);
     }
 

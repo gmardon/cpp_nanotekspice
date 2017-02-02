@@ -10,4 +10,4 @@ A implémenter:
   rom(cp_m.dat)
 
 Maj avec des vectors:
-  -4001
+  -TOUTES (et ouais 8D)

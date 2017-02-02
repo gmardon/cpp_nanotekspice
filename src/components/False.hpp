@@ -5,7 +5,7 @@
 
 namespace nts
 {
-    class False : public IComponent
+    class False : public AComponent
     {
     public:
         False();

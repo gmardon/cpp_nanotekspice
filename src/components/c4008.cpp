@@ -4,22 +4,22 @@ namespace nts
 {
     c4008::c4008()
     {
-        this->pins[0].setMode(nts::Pin::I);
-        this->pins[1].setMode(nts::Pin::I);
-        this->pins[2].setMode(nts::Pin::I);
-        this->pins[3].setMode(nts::Pin::I);
-        this->pins[4].setMode(nts::Pin::I);
-        this->pins[5].setMode(nts::Pin::I);
-        this->pins[6].setMode(nts::Pin::I);
-        this->pins[7].setMode(nts::Pin::VSS);
-        this->pins[8].setMode(nts::Pin::I);
-        this->pins[9].setMode(nts::Pin::O);
-        this->pins[10].setMode(nts::Pin::O);
-        this->pins[11].setMode(nts::Pin::O);
-        this->pins[12].setMode(nts::Pin::O);
-        this->pins[13].setMode(nts::Pin::O);
-        this->pins[14].setMode(nts::Pin::I);
-        this->pins[15].setMode(nts::Pin::VDD);
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::VSS});
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::I});
+        this->pins.push_back(Pin{nts::Pin::VDD});
     }
 
     nts::Tristate c4008::Compute(std::size_t pin_num_this)

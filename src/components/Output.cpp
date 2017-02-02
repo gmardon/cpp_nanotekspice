@@ -4,7 +4,7 @@ namespace nts
 {
     Output::Output()
     {
-        this->pins[0].setMode(nts::Pin::O);
+        this->pins.push_back(Pin{nts::Pin::O});
     }
 
     nts::Tristate Output::Compute(std::size_t pin_num_this)

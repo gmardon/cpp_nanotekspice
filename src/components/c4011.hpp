@@ -15,4 +15,5 @@ namespace nts
         virtual ~c4011(void);
     };
 }
+
 #endif
