@@ -4,6 +4,7 @@ namespace nts
 {
     True::True()
     {
+        this->name = "True";
         this->pins.push_back(Pin{nts::Pin::I});
         this->pins[0].setState(TRUE);
     }
@@ -25,7 +26,7 @@ namespace nts
 
     void True::Dump(void) const
     {
-        std::cout << "Input true" << std::endl;
+        std::cout << "Input " << this->name << std::endl;
     }
 
     True::~True(void)

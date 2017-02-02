@@ -4,6 +4,7 @@ namespace nts
 {
     Output::Output()
     {
+        this->name = "Output";
         this->pins.push_back(Pin{nts::Pin::O});
     }
 
@@ -24,7 +25,7 @@ namespace nts
 
     void Output::Dump(void) const
     {
-        std::cout << "Output" << std::endl;
+        std::cout << "Output " << this->name << std::endl;
     }
 
     Output::~Output(void)

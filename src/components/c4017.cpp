@@ -4,6 +4,7 @@ namespace nts
 {
     c4017::c4017() : value(0), prevClock0(FALSE), prevClock1(FALSE)
     {
+        this->name = "4017";
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins.push_back(Pin{nts::Pin::O});
@@ -58,7 +59,7 @@ namespace nts
 
     void c4017::Dump(void) const
     {
-        std::cout << "Chipset 4017" << std::endl;
+        std::cout << "Chipset " << this->name << std::endl;
     }
 
     c4017::~c4017(void)

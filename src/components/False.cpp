@@ -4,6 +4,7 @@ namespace nts
 {
     False::False()
     {
+        this->name = "False";
         this->pins.push_back(Pin{nts::Pin::I});
         this->pins[0].setState(FALSE);
     }
@@ -25,7 +26,7 @@ namespace nts
 
     void False::Dump(void) const
     {
-        std::cout << "Input False" << std::endl;
+        std::cout << "Input " << this->name << std::endl;
     }
 
     False::~False(void)

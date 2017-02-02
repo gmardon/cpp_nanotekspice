@@ -4,6 +4,7 @@ namespace nts
 {
     Clock::Clock()
     {
+        this->name = "Clock";
         this->pins.push_back(Pin{nts::Pin::I});
         this->pins[0].setState(FALSE);
     }
@@ -29,7 +30,7 @@ namespace nts
 
     void Clock::Dump(void) const
     {
-        std::cout << "Input Clock" << std::endl;
+        std::cout << "Input " << this->name << std::endl;
     }
 
     Clock::~Clock(void)

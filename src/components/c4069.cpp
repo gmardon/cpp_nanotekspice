@@ -4,6 +4,7 @@ namespace nts
 {
     c4069::c4069()
     {
+        this->name = "4069";
         this->pins.push_back(Pin{nts::Pin::I});
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins.push_back(Pin{nts::Pin::I});
@@ -45,7 +46,7 @@ namespace nts
 
     void c4069::Dump(void) const
     {
-        std::cout << "Chipset 4069" << std::endl;
+        std::cout << "Chipset " << this->name << std::endl;
     }
 
     c4069::~c4069(void)

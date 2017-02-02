@@ -4,6 +4,7 @@ namespace nts
 {
     Input::Input(Tristate _state)
     {
+        this->name = "Trigger";
         this->pins.push_back(Pin{nts::Pin::I});
         this->pins[0].setState(_state);
     }
@@ -31,7 +32,7 @@ namespace nts
 
     void Input::Dump(void) const
     {
-        std::cout << "Input Input" << std::endl;
+        std::cout << "Input " << this->name << std::endl;
     }
 
     Input::~Input(void)
