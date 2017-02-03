@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QtWidgets>
 #include <src/components/IComponent.hpp>
+#include <src/components/Pin.hpp>
+#include <src/components/AComponent.hpp>
 #include "EditorView.h"
 
 
@@ -18,7 +20,7 @@ namespace nts {
 
         ~MainWindow();
 
-        void setComponents(std::vector<IComponent*> components);
+        void setComponents(std::vector<AComponent*> components);
 
     private slots:
 
@@ -32,7 +34,7 @@ namespace nts {
         EditorView *view;
         QGraphicsScene *scene;
 
-        const char* getComponentName(nts::IComponent *component);
+        std::vector<Pin> getPorts(AComponent *component);
     };
 }
 #endif // QNEMAINWINDOW_H

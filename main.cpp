@@ -12,16 +12,16 @@ int main(int argc, char *argv[]) {
     nts::MainWindow w;
     w.show();
 
-    nts::IComponent *input1 = new nts::True();
-    nts::IComponent *input2 = new nts::True();
-    nts::IComponent *c4001 = new nts::c4001();
-    nts::IComponent *output = new nts::Output();
+    nts::AComponent *input1 = new nts::True();
+    nts::AComponent *input2 = new nts::True();
+    nts::AComponent *c4001 = new nts::c4001();
+    nts::AComponent *output = new nts::Output();
 
     c4001->SetLink(1, *input1, 1);
     c4001->SetLink(2, *input2, 1);
     output->SetLink(1, *c4001, 3);
 
-    std::vector<nts::IComponent*> *v = new std::vector<nts::IComponent*>();
+    std::vector<nts::AComponent*> *v = new std::vector<nts::AComponent*>();
     v->push_back(input1);
     v->push_back(input2);
     v->push_back(c4001);

@@ -8,6 +8,8 @@
 #include <iostream>
 #include <cxxabi.h>
 #include <src/components/Pin.hpp>
+#include <src/components/Input.hpp>
+#include <src/components/True.hpp>
 
 namespace nts {
 
@@ -89,27 +91,41 @@ namespace nts {
         QDataStream ds(&f);
     }
 
-    const char* MainWindow::getComponentName(nts::IComponent *component) {
-        char   *realname;
-        const std::type_info  &ti = typeid(*component);
-        realname = abi::__cxa_demangle(ti.name(), 0, 0, new int);
-        return (realname);
-    }
-
-    void MainWindow::setComponents(std::vector<IComponent*> components)
+    void MainWindow::setComponents(std::vector<AComponent*> components)
     {
         for (const auto& component : components)
         {
-            const char *name = getComponentName(component);
-
             Block *b = new Block(0);
             scene->addItem(b);
-            b->addPort(name, 0, Port::NamePort);
-            b->addInputPort("in");
-            b->addOutputPort("out");
+            b->addPort(QString::fromStdString(component->getName()), 0, Port::NamePort);
 
-            printf("NAME: %s\n", name);
+            for (const auto& pin : component->getPins()) {
+                switch(pin.getMode()) {
+                    case Pin::Mode::U:
+                        b->addInputPort("UNDEFINED");
+                        break;
+
+                    case Pin::Mode::I:
+                        b->addInputPort("IN " + pin.getTargetPin());
+                        break;
+
+                    case Pin::Mode::O:
+                        b->addOutputPort("OUT " + pin.getTargetPin());
+                        break;
+
+                    case Pin::Mode::IO:
+                        b->addOutputPort("IN/OUT" + pin.getTargetPin());
+                        break;
+
+                    case Pin::Mode::VSS:
+                        b->addOutputPort("VSS " + pin.getTargetPin());
+                        break;
+
+                    case Pin::Mode::VDD:
+                        b->addOutputPort("VDD " + pin.getTargetPin());
+                        break;
+                }
+            }
         }
-
     }
 }
