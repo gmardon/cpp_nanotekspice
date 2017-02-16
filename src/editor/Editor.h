@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QtWidgets/QGraphicsScene>
+#include <src/editor/elements/Connection.h>
 
 
 class QPointF;
@@ -14,7 +15,6 @@ class QGraphicsItem;
 class QObject;
 
 namespace nts {
-    class Connection;
 
     class Block;
 

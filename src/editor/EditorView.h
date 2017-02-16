@@ -9,8 +9,14 @@
 
 namespace nts {
     class EditorView : public QGraphicsView {
+    Q_OBJECT
+
     public:
         EditorView();
+
+    private slots:
+        void showContextMenu(const QPoint &pos);
+        void addComponent();
 
     protected:
         void drawBackground(QPainter *painter, const QRectF &rect);

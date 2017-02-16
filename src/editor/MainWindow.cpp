@@ -51,24 +51,14 @@ namespace nts {
         nodesEditor = new Editor(this);
         nodesEditor->install(scene);
 
-       /* Block *b = new Block(0);
-        scene->addItem(b);
-        b->addPort("test", 0, Port::NamePort);
-        b->addInputPort("in");
-        b->addOutputPort("out");
+        blocks = new std::list<Block*>();
 
-        b = b->clone();
-        b->setPos(150, 0);
-
-        b = b->clone();
-        b->setPos(150, 150);
-*/
         this->setMinimumWidth(480);
         this->setMinimumHeight(640);
     }
 
     MainWindow::~MainWindow() {
-
+        delete blocks;
     }
 
     void MainWindow::saveFile() {
@@ -93,37 +83,74 @@ namespace nts {
 
     void MainWindow::setComponents(std::vector<AComponent*> components)
     {
+        blocks = new std::list<Block*>();
+
+        int index = 0;
         for (const auto& component : components)
         {
+            index++;
             Block *b = new Block(0);
+            //b->setPos(120 * index, index / 3 * 120);
             scene->addItem(b);
-            b->addPort(QString::fromStdString(component->getName()), 0, Port::NamePort);
+            blocks->push_front(b);
+            b->setAComponent(component);
+            b->addPort(QString::fromStdString(component->getName()), NULL, 0, Port::NamePort);
 
             for (const auto& pin : component->getPins()) {
                 switch(pin.getMode()) {
                     case Pin::Mode::U:
-                        b->addInputPort("UNDEFINED");
+                        b->addInputPort("UNDEFINED", &pin);
                         break;
 
                     case Pin::Mode::I:
-                        b->addInputPort("IN " + pin.getTargetPin());
+                        b->addInputPort("IN " + pin.getTargetPin(), &pin);
                         break;
 
                     case Pin::Mode::O:
-                        b->addOutputPort("OUT " + pin.getTargetPin());
+                        b->addOutputPort("OUT " + pin.getTargetPin(), &pin);
                         break;
 
                     case Pin::Mode::IO:
-                        b->addOutputPort("IN/OUT" + pin.getTargetPin());
+                        b->addOutputPort("IN/OUT" + pin.getTargetPin(), &pin);
                         break;
 
                     case Pin::Mode::VSS:
-                        b->addOutputPort("VSS " + pin.getTargetPin());
+                        b->addOutputPort("VSS " + pin.getTargetPin(), &pin);
                         break;
 
                     case Pin::Mode::VDD:
-                        b->addOutputPort("VDD " + pin.getTargetPin());
+                        b->addOutputPort("VDD " + pin.getTargetPin(), &pin);
                         break;
+                }
+            }
+        }
+
+        for (const auto& block : *blocks) {
+            const AComponent *component = block->getAComponent();
+            for (const auto &pin : component->getPins()) {
+                if (&pin.getComponent()) {
+                    Connection *connection = new Connection(0);
+                    connection->setPort1(block->getPortFromPin(&pin));
+                    scene->addItem(connection);
+                    Block *target;
+                    for (const auto& ba : *blocks) {
+                        if (ba->getAComponent() == &pin.getComponent()) {
+                            target = ba;
+                            break;
+                        }
+                    }
+                    if (target != NULL) {
+                        Port *port = target->getPortFromPinId(pin.getTargetPin());
+                        if (!port) {
+                            delete connection;
+                            scene->removeItem(connection);
+                            continue;
+                        } else {
+                            connection->setPort2(port);
+                        }
+                    }
+                    connection->updatePosFromPorts();
+                    connection->updatePath();
                 }
             }
         }

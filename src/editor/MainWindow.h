@@ -6,6 +6,7 @@
 #include <src/components/IComponent.hpp>
 #include <src/components/Pin.hpp>
 #include <src/components/AComponent.hpp>
+#include <src/editor/elements/Block.h>
 #include "EditorView.h"
 
 
@@ -33,6 +34,7 @@ namespace nts {
         QMenu *fileMenu;
         EditorView *view;
         QGraphicsScene *scene;
+        std::list<Block*> *blocks;
 
         std::vector<Pin> getPorts(AComponent *component);
     };

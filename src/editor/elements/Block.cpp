@@ -6,6 +6,7 @@
 #include <QPainter>
 
 #include <QStyleOptionGraphicsItem>
+#include <src/components/Pin.hpp>
 
 #include "Port.h"
 
@@ -24,13 +25,14 @@ namespace nts {
         height = vertMargin;
     }
 
-    Port *Block::addPort(const QString &name, bool isOutput, int flags, int ptr) {
+    Port *Block::addPort(const QString &name, const Pin* pin, bool isOutput, int flags, int ptr) {
         Port *port = new Port(this);
         port->setName(name);
         port->setIsOutput(isOutput);
         port->setNEBlock(this);
         port->setPortFlags(flags);
         port->setPtr(ptr);
+        port->setPin(pin);
 
         QFontMetrics fm(scene()->font());
         int w = fm.width(name);
@@ -60,20 +62,26 @@ namespace nts {
         return port;
     }
 
-    void Block::addInputPort(const QString &name) {
-        addPort(name, false);
+    void Block::addInputPort(const QString &name, const Pin *pin) {
+        addPort(name, pin, false);
     }
 
-    void Block::addOutputPort(const QString &name) {
-        addPort(name, true);
+    void Block::addOutputPort(const QString &name, const Pin *pin) {
+        addPort(name, pin, true);
     }
 
-    void Block::addInputPorts(const QStringList &names) {
-                foreach(QString n, names) addInputPort(n);
+    Port *Block::getPortFromPin(const Pin *pin) {
+        for (const auto &port : ports()) {
+            if (port->getPin() == pin)
+                return port;
+        }
+        return NULL;
     }
 
-    void Block::addOutputPorts(const QStringList &names) {
-                foreach(QString n, names) addOutputPort(n);
+    Port *Block::getPortFromPinId(size_t index) {
+        if (&(this->getAComponent()->getPins()[index - 1]) == NULL)
+            return NULL;
+        return getPortFromPin(&(this->getAComponent()->getPins()[index - 1]));
     }
 
     void Block::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
@@ -98,7 +106,7 @@ namespace nts {
                 foreach(QGraphicsItem *port_, childItems()) {
                 if (port_->type() == Port::Type) {
                     Port *port = (Port *) port_;
-                    b->addPort(port->portName(), port->isOutput(), port->portFlags(), port->ptr());
+                    b->addPort(port->portName(), port->getPin(), port->isOutput(), port->portFlags(), port->ptr());
                 }
             }
 
@@ -120,4 +128,11 @@ namespace nts {
         return value;
     }
 
+    void Block::setAComponent(const AComponent *component) {
+        this->aComponent = component;
+    }
+
+    const AComponent *Block::getAComponent() {
+        return this->aComponent;
+    }
 }

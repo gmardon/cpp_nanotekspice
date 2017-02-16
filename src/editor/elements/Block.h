@@ -2,6 +2,8 @@
 #define QNEBLOCK_H
 
 #include <QGraphicsPathItem>
+#include <src/components/Pin.hpp>
+#include <src/components/AComponent.hpp>
 
 namespace nts {
 
@@ -15,23 +17,27 @@ namespace nts {
 
         Block(QGraphicsItem *parent = 0);
 
-        Port *addPort(const QString &name, bool isOutput, int flags = 0, int ptr = 0);
+        Port *addPort(const QString &name, const Pin* pin, bool isOutput, int flags = 0, int ptr = 0);
 
-        void addInputPort(const QString &name);
+        void addInputPort(const QString &name, const Pin *pin);
 
-        void addOutputPort(const QString &name);
-
-        void addInputPorts(const QStringList &names);
-
-        void addOutputPorts(const QStringList &names);
+        void addOutputPort(const QString &name, const Pin *pin);
 
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+        Port *getPortFromPin(const Pin *pin);
+
+        Port *getPortFromPinId(size_t index);
 
         Block *clone();
 
         QVector<Port *> ports();
 
         int type() const { return Type; }
+
+        const AComponent *getAComponent();
+
+        void setAComponent(const AComponent *component);
 
     protected:
         QVariant itemChange(GraphicsItemChange change, const QVariant &value);
@@ -41,6 +47,7 @@ namespace nts {
         int vertMargin;
         int width;
         int height;
+        const AComponent *aComponent;
     };
 }
 #endif // QNEBLOCK_H

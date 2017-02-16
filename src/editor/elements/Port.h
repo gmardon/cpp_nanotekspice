@@ -2,6 +2,7 @@
 #define QNEPORT_H
 
 #include <QGraphicsPathItem>
+#include <src/components/Pin.hpp>
 
 
 namespace nts {
@@ -50,6 +51,9 @@ namespace nts {
 
         bool isConnected(Port *);
 
+        void setPin(const Pin* pin);
+
+        const Pin *getPin();
     protected:
         QVariant itemChange(GraphicsItemChange change, const QVariant &value);
 
@@ -63,6 +67,7 @@ namespace nts {
         QVector<Connection *> m_connections;
         int m_portFlags;
         quint64 m_ptr;
+        const Pin *pin;
     };
 }
 #endif // QNEPORT_H

@@ -2,6 +2,9 @@
 // Created by gmardon on 31/01/17.
 //
 #include <QtWidgets/QGraphicsItem>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QPushButton>
 #include "EditorView.h"
 
 namespace nts {
@@ -13,7 +16,39 @@ namespace nts {
         return qreal(tmp);
     }
 
-    EditorView::EditorView() : QGraphicsView() {}
+    void EditorView::addComponent() {
+        QAction *action = (QAction *) sender();
+        if (action->text().toStdString() == "input") {
+            printf("add input");
+        }
+    }
+    void EditorView::showContextMenu(const QPoint &pos)
+    {
+        QMenu contextMenu("Context menu", this);
+        QAction *actions[10];
+
+        for (int i = 0; i < 10; ++i) {
+            QString text = QString::number(i);
+            //buttons[i] = new QPushButton(text, this);
+
+            actions[i] = new QAction(text, this);
+            connect(actions[i], SIGNAL(triggered()), this, SLOT(addComponent()));
+
+            contextMenu.addAction(actions[i]);
+        }
+
+        //QAction action1("add input", this);
+        //connect(&action1, SIGNAL(triggered()), this, SLOT(addComponent()));
+
+
+        contextMenu.exec(mapToGlobal(pos));
+    }
+
+    EditorView::EditorView() : QGraphicsView() {
+        this->setContextMenuPolicy(Qt::CustomContextMenu);
+        connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
+                this, SLOT(showContextMenu(const QPoint &)));
+    }
 
     void EditorView::drawBackground(QPainter *painter, const QRectF &rect) {
         int step = GRID_STEP;

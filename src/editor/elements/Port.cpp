@@ -58,6 +58,14 @@ namespace nts {
         return isOutput_;
     }
 
+    void Port::setPin(const Pin* pin) {
+        this->pin = pin;
+    }
+
+    const Pin *Port::getPin() {
+        return this->pin;
+    }
+
     QVector<Connection *> &Port::connections() {
         return m_connections;
     }
