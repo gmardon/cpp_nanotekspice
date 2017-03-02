@@ -19,6 +19,12 @@
         "string": "cpp",
         "*hsystem_error": "cpp",
         "system_error": "cpp",
-        "array": "cpp"
+        "array": "cpp",
+        "functional": "cpp",
+        "cstdarg": "cpp",
+        "ctime": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "type_traits": "cpp"
     }
 }
