@@ -1,14 +1,14 @@
-#include "MainWindow.h"
+#include "MainWindow.hpp"
 
-#include "Editor.h"
+#include "Editor.hpp"
 
-#include "src/editor/elements/Port.h"
+#include "Port.hpp"
 #include <typeinfo>
-#include <src/components/Input.hpp>
-#include <src/components/True.hpp>
-#include <src/components/False.hpp>
-#include <src/components/Clock.hpp>
-#include <src/components/Output.hpp>
+#include "Input.hpp"
+#include "True.hpp"
+#include "False.hpp"
+#include "Clock.hpp"
+#include "Output.hpp"
 
 namespace nts {
 

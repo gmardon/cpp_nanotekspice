@@ -1,4 +1,4 @@
-#include "Block.h"
+#include "Block.hpp"
 
 #include <QPen>
 #include <QGraphicsScene>
@@ -6,9 +6,9 @@
 #include <QPainter>
 
 #include <QStyleOptionGraphicsItem>
-#include <src/components/Pin.hpp>
+#include "Pin.hpp"
 
-#include "Port.h"
+#include "Port.hpp"
 
 namespace nts {
     Block::Block(QGraphicsItem *parent) : QGraphicsPathItem(parent) {

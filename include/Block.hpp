@@ -2,8 +2,8 @@
 #define QNEBLOCK_H
 
 #include <QGraphicsPathItem>
-#include <src/components/Pin.hpp>
-#include <src/components/AComponent.hpp>
+#include "Pin.hpp"
+#include "AComponent.hpp"
 
 namespace nts {
 

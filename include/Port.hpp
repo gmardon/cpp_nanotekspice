@@ -2,7 +2,7 @@
 #define QNEPORT_H
 
 #include <QGraphicsPathItem>
-#include <src/components/Pin.hpp>
+#include "Pin.hpp"
 
 
 namespace nts {

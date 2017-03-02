@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QtWidgets/QGraphicsScene>
-#include <src/editor/elements/Connection.h>
+#include <include/Connection.hpp>
 
 
 class QPointF;

@@ -1,6 +1,6 @@
-#include "Connection.h"
+#include "Connection.hpp"
 
-#include "Port.h"
+#include "Port.hpp"
 
 #include <QBrush>
 #include <QPen>

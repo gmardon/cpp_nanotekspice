@@ -3,11 +3,12 @@
 
 #include <QMainWindow>
 #include <QtWidgets>
-#include <src/components/IComponent.hpp>
-#include <src/components/Pin.hpp>
-#include <src/components/AComponent.hpp>
-#include <src/editor/elements/Block.h>
-#include "EditorView.h"
+#include "AComponent.hpp"
+#include "IComponent.hpp"
+#include "Pin.hpp"
+#include "AComponent.hpp"
+#include "Block.hpp"
+#include "EditorView.hpp"
 
 
 namespace nts {

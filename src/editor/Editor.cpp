@@ -1,12 +1,12 @@
-#include "Editor.h"
+#include "Editor.hpp"
 
 #include <QEvent>
 #include <QGraphicsSceneMouseEvent>
 #include <QtWidgets/QGraphicsItem>
 
-#include "src/editor/elements/Port.h"
-#include "src/editor/elements/Connection.h"
-#include "src/editor/elements/Block.h"
+#include "include/Port.hpp"
+#include "include/Connection.hpp"
+#include "include/Block.hpp"
 
 namespace nts {
     Editor::Editor(::QObject *parent) :

@@ -1,9 +1,9 @@
-#include "Port.h"
+#include "Port.hpp"
 
 #include <QGraphicsScene>
 #include <QFontMetrics>
 
-#include "Connection.h"
+#include "Connection.hpp"
 
 namespace nts {
     Port::Port(QGraphicsItem *parent) :

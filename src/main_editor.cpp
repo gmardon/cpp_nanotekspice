@@ -1,9 +1,9 @@
 #include <QtWidgets>
-#include <src/components/IComponent.hpp>
-#include <src/components/True.hpp>
-#include <src/components/c4001.hpp>
-#include <src/components/Output.hpp>
-#include "src/editor/MainWindow.h"
+#include "IComponent.hpp"
+#include "True.hpp"
+#include "c4001.hpp"
+#include "Output.hpp"
+#include "include/MainWindow.hpp"
 #include <typeinfo>
 #include <cxxabi.h>
 

@@ -5,7 +5,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QPushButton>
-#include "EditorView.h"
+#include "EditorView.hpp"
 
 namespace nts {
     static const int GRID_STEP = 30;
