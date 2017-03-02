@@ -9,6 +9,8 @@
 # include "Pin.hpp"
 # include "Tristate.hpp"
 
+# include "ErrorParser.hpp"
+
 namespace nts
 {
     class AComponent : public IComponent

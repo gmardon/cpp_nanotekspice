@@ -1,4 +1,5 @@
 #include "Create.hpp"
+#include "ErrorParser.hpp"
 
 nts::IComponent * Create::createComponent(const std::string &type, const std::string &value)
 {
@@ -27,5 +28,6 @@ nts::IComponent * Create::createComponent(const std::string &type, const std::st
     static std::map<std::string, std::function<nts::IComponent *(const std::string &)>>::iterator it;
     if ((it = data.find(type)) != data.end())
         return (it->second(value));
+    throw ErrorParser("Unknown component type.", type);
     return (NULL);
 }
