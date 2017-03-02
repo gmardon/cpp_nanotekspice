@@ -12,8 +12,10 @@ TEAL				=		"\033[1;34m"
 RED					=		"\033[1;31m"
 ECHO				=		/bin/echo -e
 
-CMPT_P				=	$(SRCS_P)components/
+CMPT_P				=	$(SRC_P)components/
 CMPT				=	$(CMPT_P)AComponent.cpp	\
+						$(CMPT_P)Tristate.cpp	\
+						$(CMPT_P)Pin.cpp		\
 						$(CMPT_P)True.cpp		\
 						$(CMPT_P)False.cpp		\
 						$(CMPT_P)Input.cpp		\
@@ -30,15 +32,16 @@ CMPT				=	$(CMPT_P)AComponent.cpp	\
 						$(CMPT_P)c4071.cpp		\
 						$(CMPT_P)c4081.cpp
 
-SRCS_P				=	srcs/
-SRCS				=	$(CMPT)				\
-						$(SRCS_P)test.cpp	\
-						$(SRCS_P)Pin.cpp	\
-						$(SRCS_P)Create.cpp	\
-						$(SRCS_P)Parser.cpp	\
-						$(SRCS_P)Tristate.cpp
+PARSER_P			=	$(SRC_P)parser/
+PARSER				=	$(PARSER_P)Parser.cpp	\
+						$(PARSER_P)Create.cpp	\
 
-OBJS					=		$(SRCS:.cpp=.o)
+SRC_P				=	src/
+SRC					=	$(SRC_P)main_parser.cpp	\
+						$(CMPT)					\
+						$(PARSER)
+
+OBJ					=		$(SRC:.cpp=.o)
 
 CXXFLAGS			+= 	-Wall -Wextra -pedantic -std=c++11 -g
 
@@ -48,12 +51,12 @@ RM					=	rm -vf
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS)
-		@$(CXX) $(OBJS) -o $(NAME)
+$(NAME):	$(OBJ)
+		@$(CXX) $(OBJ) -o $(NAME)
 		@$(ECHO) $(HIGHLIGHTED)"COMPILATION SUCCEEDED ON "$(NOW)$(DEFAULT)
 
 clean:
-		@$(RM) $(OBJS)
+		@$(RM) $(OBJ)
 		@$(ECHO) $(DELETION)"OBJs PROPERLY DELETED"$(DEFAULT)
 
 fclean:		clean
