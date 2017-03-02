@@ -44,7 +44,7 @@ CXXFLAGS			+= 	-Wall -Wextra -pedantic -std=c++11 -g
 
 INCLUDE				=	./include
 
-RM					=	rm -rf
+RM					=	rm -vf
 
 all:		$(NAME)
 
