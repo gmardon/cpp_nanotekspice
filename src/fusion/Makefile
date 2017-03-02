@@ -12,29 +12,28 @@ TEAL				=		"\033[1;34m"
 RED					=		"\033[1;31m"
 ECHO				=		/bin/echo -e
 
-CMPT_P				=	components/
-CMPT				=	$(SRCS_P)AComponent.cpp	\
-						$(SRCS_P)Pin.cpp		\
-						$(SRCS_P)True.cpp		\
-						$(SRCS_P)False.cpp		\
-						$(SRCS_P)Input.cpp		\
-						$(SRCS_P)Clock.cpp		\
-						$(SRCS_P)Output.cpp		\
-						$(SRCS_P)c4001.cpp		\
-						$(SRCS_P)c4008.cpp		\
-						$(SRCS_P)c4011.cpp		\
-						$(SRCS_P)c4013.cpp		\
-						$(SRCS_P)c4017.cpp		\
-						$(SRCS_P)c4030.cpp		\
-						$(SRCS_P)c4040.cpp		\
-						$(SRCS_P)c4069.cpp		\
-						$(SRCS_P)c4071.cpp		\
-						$(SRCS_P)c4081.cpp
+CMPT_P				=	$(SRCS_P)components/
+CMPT				=	$(CMPT_P)AComponent.cpp	\
+						$(CMPT_P)True.cpp		\
+						$(CMPT_P)False.cpp		\
+						$(CMPT_P)Input.cpp		\
+						$(CMPT_P)Clock.cpp		\
+						$(CMPT_P)Output.cpp		\
+						$(CMPT_P)c4001.cpp		\
+						$(CMPT_P)c4008.cpp		\
+						$(CMPT_P)c4011.cpp		\
+						$(CMPT_P)c4013.cpp		\
+						$(CMPT_P)c4017.cpp		\
+						$(CMPT_P)c4030.cpp		\
+						$(CMPT_P)c4040.cpp		\
+						$(CMPT_P)c4069.cpp		\
+						$(CMPT_P)c4071.cpp		\
+						$(CMPT_P)c4081.cpp
 
 SRCS_P				=	srcs/
-SRCS				=	$(SRCS_P)$(CMPT)	\
+SRCS				=	$(CMPT)				\
 						$(SRCS_P)test.cpp	\
-						$(SRCS_P)pin.cpp	\
+						$(SRCS_P)Pin.cpp	\
 						$(SRCS_P)Create.cpp	\
 						$(SRCS_P)Parser.cpp	\
 						$(SRCS_P)Tristate.cpp
