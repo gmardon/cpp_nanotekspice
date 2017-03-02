@@ -1,11 +1,38 @@
-#include "Parser.hpp"
-#include "IComponent.hpp"
-int main()
+#include "../include/Parser.hpp"
+#include "../include/IComponent.hpp"
+
+void dump(std::map<std::string, nts::IComponent *> chipsets)
 {
-    std::map<std::string, nts::IComponent *> chipsets = parser("test_1");
+    for(std::map<std::string, nts::IComponent *>::iterator it = chipsets.begin(); it != chipsets.end(); ++it )
+        it->second->Dump();
+}
 
-    nts::Tristate_dump(chipsets["s"]->Compute());
-    std::cout << std::endl;
+int launch(std::map<std::string, nts::IComponent *> chipsets)
+{
+    std::string command;
+    while (1)
+    {
+        std::cout << "> ";
+        std::cin >> command;
+        if (command == "exit")
+            return (0);
+        else if (command == "display")
+            ;
+        else if (command == "simulate")
+            ;
+        else if (command == "loop")
+            ;
+        else if (command == "dump")
+            dump(chipsets);
+        else if (command == "input")
+            ;
+    }
+}
 
-    return (0);
+int main(int ac, char **av)
+{
+    if (ac < 2)
+        return (84);
+    std::map<std::string, nts::IComponent *> chipsets = parser(av[1]);
+    return (launch(chipsets));
 }

@@ -43,7 +43,11 @@ std::map<std::string, nts::IComponent *> create_chipset(std::stringstream &str)
         {
             std::cout << "Created \x1b[31m" << match[2] << "\x1b[0m component of type \x1b[32m" << match[1] << "\x1b[0m.";
             if (chipsets.find(match[2]) == chipsets.end())
-                chipsets[match[2]] = Create::createComponent(match[1], match[3]);
+            {
+                nts::IComponent *cmpt = Create::createComponent(match[1], match[3]);
+                dynamic_cast<nts::AComponent *>(cmpt)->setName(match[2]);
+                chipsets[match[2]] = cmpt;
+            }
             std::cout << std::endl;
         }
     std::cout << std::endl;
