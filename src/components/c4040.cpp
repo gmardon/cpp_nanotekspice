@@ -5,6 +5,7 @@ namespace nts
     c4040::c4040(const std::string &) : value(0), prevClock(FALSE)
     {
         this->name = "4040";
+        this->type = "4040";
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins.push_back(Pin{nts::Pin::O});

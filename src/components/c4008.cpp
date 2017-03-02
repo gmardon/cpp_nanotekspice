@@ -5,6 +5,7 @@ namespace nts
     c4008::c4008(const std::string &)
     {
         this->name = "4008";
+        this->type = "4008";
         this->pins.push_back(Pin{nts::Pin::I});
         this->pins.push_back(Pin{nts::Pin::I});
         this->pins.push_back(Pin{nts::Pin::I});

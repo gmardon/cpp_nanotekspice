@@ -5,6 +5,7 @@ namespace nts
     Output::Output(const std::string &)
     {
         this->name = "Output";
+        this->type = "output";
         this->pins.push_back(Pin{nts::Pin::O});
     }
 

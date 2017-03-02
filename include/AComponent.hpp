@@ -21,10 +21,12 @@ namespace nts
 
     public:
         const std::string &getName() const;
+        const std::string &getType() const;
         const std::vector<Pin> &getPins() const;
         void setName(const std::string &);
 
     protected:
+        std::string type;
         std::string name;
         std::vector<Pin> pins;
     };

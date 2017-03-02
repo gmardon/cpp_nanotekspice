@@ -5,6 +5,7 @@ namespace nts
     Input::Input(const std::string &)
     {
         this->name = "Trigger";
+        this->type = "input";
         this->pins.push_back(Pin{nts::Pin::I});
         this->pins[0].setState(UNDEFINED);
     }
