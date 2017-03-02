@@ -15,8 +15,13 @@ namespace nts {
         EditorView();
 
     private slots:
+
         void showContextMenu(const QPoint &pos);
-        void addComponent();
+
+        void sAddComponent();
+
+    signals:
+        void addComponentEvent(std::string name);
 
     protected:
         void drawBackground(QPainter *painter, const QRectF &rect);

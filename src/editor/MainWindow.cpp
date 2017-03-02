@@ -1,15 +1,14 @@
 #include "MainWindow.h"
 
-#include "src/editor/elements/Block.h"
 #include "Editor.h"
 
 #include "src/editor/elements/Port.h"
 #include <typeinfo>
-#include <iostream>
-#include <cxxabi.h>
-#include <src/components/Pin.hpp>
 #include <src/components/Input.hpp>
 #include <src/components/True.hpp>
+#include <src/components/False.hpp>
+#include <src/components/Clock.hpp>
+#include <src/components/Output.hpp>
 
 namespace nts {
 
@@ -41,6 +40,7 @@ namespace nts {
         setWindowTitle(tr("Nanotekspice"));
 
         view = new EditorView();
+        connect(view, SIGNAL(addComponentEvent(std::string)), this, SLOT(addComponent(std::string)));
         view->setScene(scene);
 
         view->setRenderHint(QPainter::Antialiasing, true);
@@ -55,10 +55,64 @@ namespace nts {
 
         this->setMinimumWidth(480);
         this->setMinimumHeight(640);
+
     }
 
     MainWindow::~MainWindow() {
         delete blocks;
+    }
+
+    void MainWindow::addComponent(std::string name) {
+        nts::AComponent *component;
+        if (name == "true") {
+            component = new nts::True();
+        } else if (name == "false") {
+            component = new nts::False();
+        } else if (name == "clock") {
+            component = new nts::Clock();
+        } else if (name == "output") {
+            component = new nts::Output();
+        } else {
+            return;
+        }
+
+        Block *b = new Block(0);
+        scene->addItem(b);
+        blocks->push_front(b);
+        b->setAComponent(component);
+        b->addPort(QString::fromStdString(component->getName()), NULL, 0, Port::NamePort);
+
+        QPointF pos = view->mapToScene(mapFromGlobal(QCursor::pos()));
+
+        b->setPos(pos.x(), pos.y() - 10);
+
+        for (const auto &pin : component->getPins()) {
+            switch (pin.getMode()) {
+                case Pin::Mode::U:
+                    b->addInputPort("UNDEFINED", &pin);
+                    break;
+
+                case Pin::Mode::I:
+                    b->addInputPort("IN " + pin.getTargetPin(), &pin);
+                    break;
+
+                case Pin::Mode::O:
+                    b->addOutputPort("OUT " + pin.getTargetPin(), &pin);
+                    break;
+
+                case Pin::Mode::IO:
+                    b->addOutputPort("IN/OUT" + pin.getTargetPin(), &pin);
+                    break;
+
+                case Pin::Mode::VSS:
+                    b->addOutputPort("VSS " + pin.getTargetPin(), &pin);
+                    break;
+
+                case Pin::Mode::VDD:
+                    b->addOutputPort("VDD " + pin.getTargetPin(), &pin);
+                    break;
+            }
+        }
     }
 
     void MainWindow::saveFile() {
@@ -90,11 +144,13 @@ namespace nts {
         {
             index++;
             Block *b = new Block(0);
-            //b->setPos(120 * index, index / 3 * 120);
+            b->setPos(120 * index, index / 3 * 120);
             scene->addItem(b);
             blocks->push_front(b);
             b->setAComponent(component);
             b->addPort(QString::fromStdString(component->getName()), NULL, 0, Port::NamePort);
+
+            //printf("block: x(%d), y(%d)\n", (int) b->pos().x(), (int) b->pos().y());
 
             for (const auto& pin : component->getPins()) {
                 switch(pin.getMode()) {

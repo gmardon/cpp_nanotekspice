@@ -29,6 +29,8 @@ namespace nts {
 
         void loadFile();
 
+        void addComponent(std::string name);
+
     private:
         Editor *nodesEditor;
         QMenu *fileMenu;

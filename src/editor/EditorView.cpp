@@ -16,30 +16,25 @@ namespace nts {
         return qreal(tmp);
     }
 
-    void EditorView::addComponent() {
+    void EditorView::sAddComponent() {
         QAction *action = (QAction *) sender();
-        if (action->text().toStdString() == "input") {
-            printf("add input");
-        }
+        emit addComponentEvent(action->data().toString().toStdString());
     }
+
     void EditorView::showContextMenu(const QPoint &pos)
     {
         QMenu contextMenu("Context menu", this);
-        QAction *actions[10];
+        std::string components[4] = {"true", "false", "clock", "output"};
 
-        for (int i = 0; i < 10; ++i) {
-            QString text = QString::number(i);
-            //buttons[i] = new QPushButton(text, this);
+        for (unsigned int i = 0; i < components->size(); ++i) {
+            QString text = QString::fromStdString("add " + components[i]);
 
-            actions[i] = new QAction(text, this);
-            connect(actions[i], SIGNAL(triggered()), this, SLOT(addComponent()));
+            QAction *action = new QAction(text, this);
+            action->setData(QVariant(QString::fromStdString(components[i])));
+            connect(action, SIGNAL(triggered()), this, SLOT(sAddComponent()));
 
-            contextMenu.addAction(actions[i]);
+            contextMenu.addAction(action);
         }
-
-        //QAction action1("add input", this);
-        //connect(&action1, SIGNAL(triggered()), this, SLOT(addComponent()));
-
 
         contextMenu.exec(mapToGlobal(pos));
     }
