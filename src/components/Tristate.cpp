@@ -35,9 +35,9 @@ namespace nts
     void Tristate_dump(const Tristate &t)
     {
         if (t == TRUE)
-            std::cout << "TRUE";
+            std::cout << "1";
         else if (t == FALSE)
-            std::cout << "FALSE";
+            std::cout << "0";
         else
             std::cout << "UNDEFINED";
     }
