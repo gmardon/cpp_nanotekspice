@@ -27,6 +27,7 @@ void pony()
     std::cout << "                 \x1b[38;5;103m▀\x1b[39m           \x1b[38;5;103m▀▀▀▀\x1b[48;5;252m▄\x1b[38;5;252m██\x1b[38;5;103m▄\x1b[49m▀\x1b[39m           \x1b[00m" << std::endl;
     std::cout << "                                  \x1b[38;5;103m▀▀\x1b[39m \x1b[00m" << std::endl;
 }
+
 void dump(std::vector<nts::IComponent *> chipsets)
 {
     for(std::vector<nts::IComponent *>::iterator it = chipsets.begin(); it != chipsets.end(); ++it )
@@ -65,7 +66,6 @@ std::vector<nts::IComponent *> map_to_vector(std::map<std::string, nts::ICompone
 
 int launch(std::map<std::string, nts::IComponent *> chipsets_m, std::vector<nts::IComponent *> chipsets_v)
 {
-    (void)chipsets_m;
     std::string command;
     while (1)
     {
@@ -86,21 +86,40 @@ int launch(std::map<std::string, nts::IComponent *> chipsets_m, std::vector<nts:
             pony();
         // else if (command == "input")
         //     ;
+    std::regex rgx("^(\\S+)=(\\S+)$");
+    std::smatch match;
+    if (std::regex_search(command, match, rgx))
+    {
+        if (chipsets_m.find(match[1]) != chipsets_m.end())
+        {
+            nts::IComponent *cmpt = Create::createComponent(match[1], match[3]);
+            dynamic_cast<nts::AComponent *>(cmpt)->setName(match[2]);
+            chipsets_m[match[2]] = cmpt;
+        }
+        else
+            throw ErrorParser("Several components share the same name.", match[2]);
+    }
+    else
+        throw ErrorParser("Unknown command.", command);
     }
 }
 
 int main(int ac, char **av)
 {
     if (ac < 2)
+    {
+        std::cerr << "\x1b[31mAn error occured\x1b[0m: No arguments given \x1b[31mat\x1b[0m: main" << std::endl;
         return (1);
+    }
     try
     {
         std::map<std::string, nts::IComponent *> chipsets = parser(av[1]);
-        return (launch(chipsets, map_to_vector(chipsets)));
+        launch(chipsets, map_to_vector(chipsets));
     }
     catch (const ErrorParser &error)
     {
         std::cerr << "\x1b[31mAn error occured\x1b[0m: " << error.what() << " \x1b[31mat\x1b[0m: " << error.getIndicator() << std::endl;
         return (1);
     }
+    return (0);
 }
