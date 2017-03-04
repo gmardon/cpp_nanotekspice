@@ -5,7 +5,7 @@ namespace nts
     c4013::c4013(const std::string &)
     {
         this->name = "4013";
-        this->type = "4013";
+        this->type = nts::AComponent::Type::C;
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins.push_back(Pin{nts::Pin::I});

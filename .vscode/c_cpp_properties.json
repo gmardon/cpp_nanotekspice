@@ -11,7 +11,7 @@
         {
             "name": "Linux",
             "includePath": ["/usr/include", 
-                            "/home/charlie/current/cpp_nanotekspice/src/fusion/include"],
+                            "/home/charlie/current/cpp_nanotekspice/include"],
             "browse" : {
                 "limitSymbolsToIncludedHeaders" : true,
                 "databaseFilename" : ""

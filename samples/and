@@ -2,8 +2,8 @@
 # One and gate
 
 .chipsets:
-true a
-true b
+input a
+input b
 output s
 4081 gate
 

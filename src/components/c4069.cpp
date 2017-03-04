@@ -5,7 +5,7 @@ namespace nts
     c4069::c4069(const std::string &)
     {
         this->name = "4069";
-        this->type = "4069";
+        this->type = nts::AComponent::Type::C;
         this->pins.push_back(Pin{nts::Pin::I});
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins.push_back(Pin{nts::Pin::I});

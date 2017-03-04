@@ -5,8 +5,8 @@ namespace nts
     True::True(const std::string &)
     {
         this->name = "True";
-        this->type = "true";
-        this->pins.push_back(Pin{nts::Pin::I});
+        this->type = nts::AComponent::Type::IC;
+        this->pins.push_back(Pin{nts::Pin::O});
         this->pins[0].setState(TRUE);
     }
 

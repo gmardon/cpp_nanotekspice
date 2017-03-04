@@ -1,5 +1,5 @@
-#include "../../include/Parser.hpp"
-#include "../../include/ErrorParser.hpp"
+#include "Parser.hpp"
+#include "ErrorParser.hpp"
 
 bool is_non_empty(std::string &line)
 {

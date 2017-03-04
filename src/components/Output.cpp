@@ -5,8 +5,8 @@ namespace nts
     Output::Output(const std::string &)
     {
         this->name = "Output";
-        this->type = "output";
-        this->pins.push_back(Pin{nts::Pin::O});
+        this->type = nts::AComponent::Type::O;
+        this->pins.push_back(Pin{nts::Pin::I});
     }
 
     nts::Tristate Output::Compute(std::size_t pin_num_this)

@@ -5,8 +5,8 @@ namespace nts
     Clock::Clock(const std::string &)
     {
         this->name = "Clock";
-        this->type = "clock";
-        this->pins.push_back(Pin{nts::Pin::I});
+        this->type = nts::AComponent::Type::C;
+        this->pins.push_back(Pin{nts::Pin::O});
         this->pins[0].setState(FALSE);
     }
 

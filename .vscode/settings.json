@@ -25,6 +25,7 @@
         "ctime": "cpp",
         "exception": "cpp",
         "initializer_list": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "algorithm": "cpp"
     }
 }

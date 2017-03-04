@@ -1,54 +1,7 @@
-#include <typeinfo>
-#include "../include/Parser.hpp"
-#include "../include/IComponent.hpp"
 #include <algorithm>
-
-void pony()
-{
-    std::cout << "     \x1b[38;5;221m▄▄\x1b[48;5;221;38;5;229m▄▄▄▄▄\x1b[49;38;5;221m▄▄▄\x1b[39m                                  \x1b[00m" << std::endl;
-    std::cout << "   \x1b[38;5;221m▄\x1b[48;5;221;38;5;229m▄\x1b[48;5;229m█\x1b[38;5;221m▄\x1b[38;5;229m████████\x1b[48;5;221m▄▄▄\x1b[49;38;5;103m▄\x1b[48;5;103;38;5;252m▄\x1b[49;38;5;103m▄\x1b[39m                            \x1b[00m" << std::endl;
-    std::cout << "  \x1b[48;5;221;38;5;221m█\x1b[49m▀\x1b[48;5;221m█\x1b[38;5;229m▄\x1b[48;5;229m███████████\x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m█\x1b[38;5;146m▄\x1b[48;5;103;38;5;252m▄\x1b[49;38;5;103m▄\x1b[39m                           \x1b[00m" << std::endl;
-    std::cout << "   \x1b[48;5;221;38;5;221m█\x1b[48;5;229;38;5;229m██\x1b[38;5;221m▄▄▄▄▄\x1b[48;5;221;38;5;252m▄\x1b[38;5;221m█\x1b[38;5;229m▄\x1b[48;5;229m██\x1b[38;5;221m▄\x1b[48;5;103;38;5;252m▄\x1b[48;5;252m█\x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m█\x1b[48;5;103;38;5;103m█\x1b[49;38;5;221m▄\x1b[39m   \x1b[48;5;103;38;5;103m█\x1b[38;5;252m▄\x1b[38;5;103m█\x1b[49;39m \x1b[38;5;103m▄▄\x1b[39m                 \x1b[00m" << std::endl;
-    std::cout << "  \x1b[48;5;221;38;5;221m█\x1b[48;5;229;38;5;229m█\x1b[38;5;221m▄\x1b[49m▀\x1b[39m  \x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m██\x1b[48;5;221m▄▄▄▄▄\x1b[48;5;252m███\x1b[48;5;103m▄\x1b[48;5;252m█\x1b[48;5;103;38;5;103m█\x1b[48;5;221;38;5;221m█\x1b[49;39m  \x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m██\x1b[48;5;103;38;5;103m█\x1b[38;5;252m▄\x1b[48;5;252m█\x1b[48;5;103;38;5;103m█\x1b[49;39m                 \x1b[00m" << std::endl;
-    std::cout << "  \x1b[48;5;221;38;5;221m██\x1b[49;39m   \x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m███\x1b[48;5;103;38;5;16m▄\x1b[48;5;16;38;5;252m▄▄\x1b[38;5;146m▄\x1b[48;5;146;38;5;16m▄\x1b[48;5;16;38;5;252m▄\x1b[48;5;252m███\x1b[38;5;221m▄\x1b[48;5;229;38;5;229m█\x1b[48;5;221;38;5;221m█\x1b[49;39m  \x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m██\x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m█\x1b[38;5;103m▄\x1b[49m▀\x1b[39m                 \x1b[00m" << std::endl;
-    std::cout << "  \x1b[38;5;221m▀\x1b[39m    \x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m██\x1b[48;5;16;38;5;16m█\x1b[48;5;146;38;5;252m▄\x1b[48;5;252m███\x1b[48;5;16;38;5;16m█\x1b[38;5;103m▄\x1b[38;5;252m▄\x1b[48;5;252m██\x1b[48;5;221;38;5;221m█\x1b[48;5;229;38;5;229m█\x1b[48;5;221;38;5;221m█\x1b[49;38;5;103m▄\x1b[48;5;103m█\x1b[48;5;252;38;5;252m██\x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m█\x1b[38;5;103m▄\x1b[48;5;103;38;5;252m▄\x1b[49;38;5;103m▄▄\x1b[39m                \x1b[00m" << std::endl;
-    std::cout << "      \x1b[38;5;103m▄\x1b[48;5;103m█\x1b[48;5;252;38;5;252m██\x1b[48;5;16;38;5;16m█\x1b[48;5;252;38;5;252m████\x1b[48;5;103m▄\x1b[48;5;252m███\x1b[48;5;221;38;5;221m█\x1b[48;5;229;38;5;229m█\x1b[38;5;221m▄\x1b[48;5;221;38;5;103m▄\x1b[48;5;146;38;5;146m█\x1b[48;5;103;38;5;103m█\x1b[48;5;252m▄\x1b[48;5;103m█\x1b[48;5;252;38;5;252m██\x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m██\x1b[48;5;103;38;5;103m█\x1b[49;39m                \x1b[00m" << std::endl;
-    std::cout << "      \x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m█\x1b[48;5;146;38;5;103m▄\x1b[48;5;252;38;5;252m█████████\x1b[48;5;221;38;5;221m█\x1b[48;5;229;38;5;229m██\x1b[48;5;221;38;5;221m█\x1b[48;5;103;38;5;146m▄\x1b[48;5;146;38;5;103m▄\x1b[48;5;103m█\x1b[48;5;252;38;5;252m█\x1b[48;5;103;38;5;103m█\x1b[38;5;252m▄\x1b[38;5;103m█\x1b[48;5;252;38;5;252m██\x1b[48;5;103;38;5;103m█\x1b[48;5;221;38;5;229m▄▄▄▄▄\x1b[49;38;5;221m▄▄\x1b[39m          \x1b[00m" << std::endl;
-    std::cout << "       \x1b[38;5;103m▀▀\x1b[48;5;252m▄▄▄▄▄▄\x1b[38;5;252m██\x1b[48;5;221;38;5;221m█\x1b[48;5;229;38;5;229m█\x1b[38;5;221m▄\x1b[38;5;229m█\x1b[48;5;221;38;5;221m█\x1b[48;5;146;38;5;146m█\x1b[38;5;103m▄\x1b[48;5;103m█\x1b[48;5;252;38;5;252m█\x1b[48;5;103m▄\x1b[48;5;252m█\x1b[38;5;103m▄\x1b[48;5;103m█\x1b[38;5;229m▄\x1b[48;5;229m████████\x1b[48;5;221;38;5;221m█\x1b[49;39m         \x1b[00m" << std::endl;
-    std::cout << "               \x1b[48;5;103;38;5;103m█\x1b[48;5;221;38;5;221m█\x1b[48;5;229m▄\x1b[48;5;221m█\x1b[48;5;229;38;5;229m███\x1b[48;5;221;38;5;221m█\x1b[48;5;146;38;5;103m▄\x1b[48;5;103m█\x1b[48;5;252;38;5;252m█\x1b[48;5;103m▄\x1b[48;5;252m█\x1b[48;5;103;38;5;103m█\x1b[48;5;252m▄\x1b[49;38;5;221m▀▀\x1b[48;5;229m▄\x1b[38;5;229m███████\x1b[48;5;221m▄\x1b[49;38;5;221m▄\x1b[39m       \x1b[00m" << std::endl;
-    std::cout << "               \x1b[48;5;103;38;5;103m█\x1b[48;5;221;38;5;252m▄\x1b[48;5;252m█\x1b[48;5;221;38;5;221m█\x1b[48;5;229m▄\x1b[48;5;221;38;5;252m▄\x1b[48;5;229;38;5;221m▄\x1b[48;5;221m█\x1b[48;5;103;38;5;234m▄\x1b[48;5;252m▄▄▄\x1b[48;5;103m▄▄\x1b[48;5;252m▄\x1b[48;5;103m▄\x1b[49m▄\x1b[48;5;221;38;5;146m▄\x1b[48;5;229m▄\x1b[38;5;229m█████\x1b[48;5;221m▄\x1b[48;5;229;38;5;221m▄▄\x1b[48;5;221m█\x1b[49;39m      \x1b[00m" << std::endl;
-    std::cout << "               \x1b[38;5;103m▀\x1b[48;5;252m▄\x1b[38;5;252m██\x1b[48;5;221m▄▄\x1b[48;5;146;38;5;146m█\x1b[48;5;221;38;5;231m▄\x1b[48;5;234;38;5;234m█\x1b[48;5;237;38;5;237m█\x1b[48;5;234m▄\x1b[48;5;237;38;5;234m▄\x1b[38;5;237m██\x1b[48;5;234m▄\x1b[48;5;237;38;5;234m▄\x1b[38;5;237m█\x1b[48;5;234;38;5;234m█\x1b[48;5;146;38;5;146m█\x1b[48;5;229;38;5;221m▄\x1b[38;5;229m█████\x1b[48;5;221;38;5;221m█\x1b[49;39m \x1b[38;5;221m▀\x1b[39m      \x1b[00m" << std::endl;
-    std::cout << "              \x1b[38;5;103m▄▄\x1b[48;5;103m█\x1b[48;5;252m▄▄▄\x1b[38;5;252m██\x1b[48;5;146m▄\x1b[48;5;234;38;5;234m█\x1b[48;5;237m▄\x1b[38;5;237m█\x1b[48;5;234;38;5;234m█\x1b[48;5;237;38;5;237m███\x1b[48;5;234;38;5;234m█\x1b[48;5;237;38;5;237m█\x1b[48;5;234m▄\x1b[48;5;229;38;5;234m▄\x1b[48;5;221;38;5;221m█\x1b[48;5;229;38;5;229m██████\x1b[48;5;221m▄\x1b[49;38;5;221m▄\x1b[39m      \x1b[00m" << std::endl;
-    std::cout << "            \x1b[48;5;103;38;5;103m█\x1b[38;5;146m▄\x1b[38;5;103m█\x1b[38;5;252m▄\x1b[48;5;252m█████\x1b[48;5;103;38;5;103m█\x1b[48;5;252m▄\x1b[48;5;234;38;5;234m█\x1b[38;5;237m▄\x1b[48;5;237;38;5;234m▄\x1b[38;5;237m█\x1b[48;5;234;38;5;234m█\x1b[48;5;237;38;5;237m███\x1b[48;5;234;38;5;234m█\x1b[48;5;237;38;5;237m█\x1b[48;5;234;38;5;234m█\x1b[49;39m \x1b[38;5;221m▀\x1b[48;5;229m▄\x1b[38;5;229m██████\x1b[48;5;221m▄\x1b[49;38;5;221m▄▄\x1b[39m   \x1b[00m" << std::endl;
-    std::cout << "            \x1b[48;5;103;38;5;103m█\x1b[48;5;146;38;5;146m█\x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m██\x1b[48;5;103m▄\x1b[38;5;103m█\x1b[49m▀▀▀\x1b[39m \x1b[38;5;234m▀\x1b[48;5;237m▄\x1b[48;5;234m█\x1b[48;5;237m▄\x1b[48;5;221m▄\x1b[48;5;237m▄▄▄\x1b[48;5;221m▄\x1b[48;5;237m▄\x1b[48;5;234;38;5;103m▄\x1b[49;39m  \x1b[38;5;221m▀\x1b[48;5;229m▄\x1b[38;5;229m█\x1b[48;5;221m▄\x1b[48;5;229;38;5;221m▄▄▄\x1b[38;5;229m███\x1b[48;5;221m▄\x1b[49;38;5;221m▄▄\x1b[39m\x1b[00m" << std::endl;
-    std::cout << "            \x1b[48;5;103;38;5;103m█\x1b[48;5;146;38;5;146m█\x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m███\x1b[48;5;103m▄\x1b[49;38;5;103m▄\x1b[39m      \x1b[48;5;103;38;5;103m█\x1b[48;5;234;38;5;146m▄\x1b[48;5;146m█\x1b[48;5;103m▄\x1b[38;5;103m█\x1b[48;5;252m▄\x1b[48;5;234;38;5;252m▄\x1b[48;5;103m▄\x1b[49;38;5;103m▄\x1b[39m   \x1b[38;5;221m▀\x1b[48;5;229m▄▄\x1b[38;5;229m█\x1b[38;5;221m▄\x1b[49m▀▀▀▀\x1b[39m  \x1b[00m" << std::endl;
-    std::cout << "            \x1b[38;5;103m▀\x1b[48;5;103m██\x1b[48;5;252;38;5;252m████\x1b[48;5;103;38;5;103m█\x1b[49;39m       \x1b[48;5;103;38;5;103m█\x1b[48;5;146;38;5;146m███\x1b[48;5;103;38;5;103m█\x1b[48;5;252;38;5;252m███\x1b[48;5;103;38;5;103m█\x1b[49m▄\x1b[39m    \x1b[38;5;221m▀▀▀\x1b[39m     \x1b[00m" << std::endl;
-    std::cout << "               \x1b[38;5;103m▀\x1b[48;5;252m▄\x1b[38;5;252m█\x1b[48;5;103;38;5;103m█\x1b[49;39m        \x1b[38;5;103m▀\x1b[48;5;146m▄\x1b[38;5;146m██\x1b[48;5;103m▄\x1b[48;5;252;38;5;103m▄\x1b[38;5;252m████\x1b[48;5;103;38;5;103m█\x1b[49;39m           \x1b[00m" << std::endl;
-    std::cout << "                 \x1b[38;5;103m▀\x1b[39m           \x1b[38;5;103m▀▀▀▀\x1b[48;5;252m▄\x1b[38;5;252m██\x1b[38;5;103m▄\x1b[49m▀\x1b[39m           \x1b[00m" << std::endl;
-    std::cout << "                                  \x1b[38;5;103m▀▀\x1b[39m \x1b[00m" << std::endl;
-}
-
-void dump(std::vector<nts::IComponent *> chipsets)
-{
-    for(std::vector<nts::IComponent *>::iterator it = chipsets.begin(); it != chipsets.end(); ++it )
-        (*it)->Dump();
-}
-
-// void simulate()
-// {
-
-// }
-
-void display(std::vector<nts::IComponent *> chipsets)
-{
-    for(std::vector<nts::IComponent *>::iterator it = chipsets.begin(); it != chipsets.end(); ++it )
-        if (dynamic_cast<nts::AComponent *>(*it)->getType() == "output")
-        {
-            std::cout << dynamic_cast<nts::AComponent *>(*it)->getName() << "=";
-            nts::Tristate_dump((*it)->Compute(1));
-            std::cout << std::endl;
-        }
-}
+#include "Parser.hpp"
+#include "IComponent.hpp"
+#include "Commands.hpp"
 
 bool cmp_icmp(const nts::IComponent *c1, const nts::IComponent *c2)
 {
@@ -64,44 +17,45 @@ std::vector<nts::IComponent *> map_to_vector(std::map<std::string, nts::ICompone
     return (chipsets_v);
 }
 
-int launch(std::map<std::string, nts::IComponent *> chipsets_m, std::vector<nts::IComponent *> chipsets_v)
+void set_inputs(std::map<std::string, nts::IComponent *> chipsets_m, char **arg, int nb)
 {
-    std::string command;
-    while (1)
-    {
-        std::cout << "> ";
-        std::cin >> command;
-        if (std::cin.eof() || command == "exit")
-            return (0);
-        else if (command == "display")
-            display(chipsets_v);
-        // else if (command == "simulate")
-        //     simulate();
-        // else if (command == "loop")
-        //     while (1)
-        //         simulate();
-        else if (command == "dump")
-            dump(chipsets_v);
-        else if (command == "pony")
-            pony();
-        // else if (command == "input")
-        //     ;
+    std::map<std::string, nts::IComponent *>::iterator it;
+    int input = 0;
+    for(std::map<std::string, nts::IComponent *>::iterator it = chipsets_m.begin(); it != chipsets_m.end(); ++it )
+        if (dynamic_cast<nts::AComponent *>((*it).second)->getType() == nts::AComponent::Type::I)
+            input++;
     std::regex rgx("^(\\S+)=(\\S+)$");
     std::smatch match;
-    if (std::regex_search(command, match, rgx))
+    int i = 0;
+    while (i < nb)
     {
-        if (chipsets_m.find(match[1]) != chipsets_m.end())
+        std::string arg_s = arg[i];
+        if (std::regex_search(arg_s, match, rgx))
         {
-            nts::IComponent *cmpt = Create::createComponent(match[1], match[3]);
-            dynamic_cast<nts::AComponent *>(cmpt)->setName(match[2]);
-            chipsets_m[match[2]] = cmpt;
+            if ((it = chipsets_m.find(match[1])) != chipsets_m.end())
+            {
+                if (dynamic_cast<nts::AComponent *>((*it).second)->getType() == nts::AComponent::Type::I)
+                {
+                    if (match[2] == "1")
+                        (*it).second->Compute(2);
+                    else if (match[2] == "0")
+                        (*it).second->Compute(3);
+                    else
+                        throw ErrorParser("Invalid value.", match[2]);
+                    input--;
+                }
+                else
+                    throw ErrorParser("Component is not an variable input.", match[1]);
+            }
+            else
+                throw ErrorParser("No component with this name.", match[1]);
         }
         else
-            throw ErrorParser("Several components share the same name.", match[2]);
+            throw ErrorParser("Invalid argument.", arg[i]);
+        i++;
     }
-    else
-        throw ErrorParser("Unknown command.", command);
-    }
+    if (input)
+        throw ErrorParser("Every inputs werent set", "arguments");
 }
 
 int main(int ac, char **av)
@@ -113,8 +67,10 @@ int main(int ac, char **av)
     }
     try
     {
-        std::map<std::string, nts::IComponent *> chipsets = parser(av[1]);
-        launch(chipsets, map_to_vector(chipsets));
+        std::map<std::string, nts::IComponent *> chipsets_m = parser(av[1]);
+        std::vector<nts::IComponent *> chipsets_v = map_to_vector(chipsets_m);
+        set_inputs(chipsets_m, &av[2], ac - 2);
+        launch(chipsets_m, chipsets_v);
     }
     catch (const ErrorParser &error)
     {

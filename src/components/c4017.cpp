@@ -5,7 +5,7 @@ namespace nts
     c4017::c4017(const std::string &) : value(0), prevClock0(FALSE), prevClock1(FALSE)
     {
         this->name = "4017";
-        this->type = "4017";
+        this->type = nts::AComponent::Type::C;
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins.push_back(Pin{nts::Pin::O});

@@ -16,6 +16,17 @@ namespace nts
     class AComponent : public IComponent
     {
     public:
+        enum Type
+        {
+            U = 0,
+            IC,
+            I,
+            T,
+            C,
+            O
+        };
+
+    public:
         virtual nts::Tristate Compute(std::size_t pin_num_this = 1) = 0;
         virtual void SetLink(std::size_t pin_num_this, nts::IComponent &component, std::size_t pin_num_target) = 0;
         virtual void Dump(void) const = 0;
@@ -23,12 +34,12 @@ namespace nts
 
     public:
         const std::string &getName() const;
-        const std::string &getType() const;
+        Type getType() const;
         const std::vector<Pin> &getPins() const;
         void setName(const std::string &);
 
     protected:
-        std::string type;
+        Type type;
         std::string name;
         std::vector<Pin> pins;
     };

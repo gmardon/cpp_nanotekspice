@@ -6,7 +6,7 @@ namespace nts
 
     const std::string &AComponent::getName() const {return (this->name);}
 
-    const std::string &AComponent::getType() const {return (this->type);}
+    AComponent::Type AComponent::getType() const {return (this->type);}
 
     const std::vector<Pin> &AComponent::getPins() const {return (this->pins);}
 }

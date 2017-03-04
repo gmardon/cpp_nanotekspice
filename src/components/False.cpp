@@ -5,8 +5,8 @@ namespace nts
     False::False(const std::string &)
     {
         this->name = "False";
-        this->type = "false";
-        this->pins.push_back(Pin{nts::Pin::I});
+        this->type = nts::AComponent::Type::IC;
+        this->pins.push_back(Pin{nts::Pin::O});
         this->pins[0].setState(FALSE);
     }
 

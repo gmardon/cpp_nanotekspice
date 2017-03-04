@@ -39,10 +39,14 @@ PARSER				=	$(PARSER_P)Parser.cpp	\
 ERROR_P				=	$(SRC_P)errors/
 ERROR				=	$(ERROR_P)ErrorParser.cpp
 
+CMD_P				=	$(SRC_P)commands/
+CMD					=	$(CMD_P)Commands.cpp
+
 SRC_P				=	src/
 SRC					=	$(SRC_P)main_parser.cpp	\
 						$(CMPT)					\
 						$(PARSER)				\
+						$(CMD)					\
 						$(ERROR)
 
 OBJ					=		$(SRC:.cpp=.o)
