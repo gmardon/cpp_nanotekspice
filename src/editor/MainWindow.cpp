@@ -4,6 +4,16 @@
 
 #include "Port.hpp"
 #include <typeinfo>
+#include <include/c4071.hpp>
+#include "c4001.hpp"
+#include "c4008.hpp"
+#include "c4011.hpp"
+#include "c4013.hpp"
+#include "c4017.hpp"
+#include "c4030.hpp"
+#include "c4069.hpp"
+#include "c4081.hpp"
+#include "c4040.hpp"
 #include "Input.hpp"
 #include "True.hpp"
 #include "False.hpp"
@@ -51,7 +61,7 @@ namespace nts {
         nodesEditor = new Editor(this);
         nodesEditor->install(scene);
 
-        blocks = new std::list<Block*>();
+        blocks = new std::list<Block *>();
 
         this->setMinimumWidth(480);
         this->setMinimumHeight(640);
@@ -72,6 +82,26 @@ namespace nts {
             component = new nts::Clock();
         } else if (name == "output") {
             component = new nts::Output();
+        } else if (name == "c4001") {
+            component = new nts::c4001();
+        } else if (name == "c4008") {
+            component = new nts::c4008();
+        } else if (name == "c4011") {
+            component = new nts::c4011();
+        } else if (name == "c4013") {
+            component = new nts::c4013();
+        } else if (name == "c4017") {
+            component = new nts::c4017();
+        } else if (name == "c4030") {
+            component = new nts::c4030();
+        } else if (name == "c4040") {
+            component = new nts::c4040();
+        } else if (name == "c4069") {
+            component = new nts::c4069();
+        } else if (name == "c4071") {
+            component = new nts::c4071();
+        } else if (name == "c4081") {
+            component = new nts::c4081();
         } else {
             return;
         }
@@ -135,13 +165,11 @@ namespace nts {
         QDataStream ds(&f);
     }
 
-    void MainWindow::setComponents(std::vector<AComponent*> components)
-    {
-        blocks = new std::list<Block*>();
+    void MainWindow::setComponents(std::vector<AComponent *> components) {
+        blocks = new std::list<Block *>();
 
         int index = 0;
-        for (const auto& component : components)
-        {
+        for (const auto &component : components) {
             index++;
             Block *b = new Block(0);
             b->setPos(120 * index, index / 3 * 120);
@@ -152,8 +180,8 @@ namespace nts {
 
             //printf("block: x(%d), y(%d)\n", (int) b->pos().x(), (int) b->pos().y());
 
-            for (const auto& pin : component->getPins()) {
-                switch(pin.getMode()) {
+            for (const auto &pin : component->getPins()) {
+                switch (pin.getMode()) {
                     case Pin::Mode::U:
                         b->addInputPort("UNDEFINED", &pin);
                         break;
@@ -181,7 +209,7 @@ namespace nts {
             }
         }
 
-        for (const auto& block : *blocks) {
+        for (const auto &block : *blocks) {
             const AComponent *component = block->getAComponent();
             for (const auto &pin : component->getPins()) {
                 if (&pin.getComponent()) {
@@ -189,7 +217,7 @@ namespace nts {
                     connection->setPort1(block->getPortFromPin(&pin));
                     scene->addItem(connection);
                     Block *target;
-                    for (const auto& ba : *blocks) {
+                    for (const auto &ba : *blocks) {
                         if (ba->getAComponent() == &pin.getComponent()) {
                             target = ba;
                             break;

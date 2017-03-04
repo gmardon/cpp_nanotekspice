@@ -22,8 +22,8 @@ namespace nts {
     ::QGraphicsItem *Editor::itemAt(const ::QPointF &pos) {
         ::QList<::QGraphicsItem *> items = scene->items(::QRectF(pos - ::QPointF(1, 1), ::QSize(3, 3)));
 
-                foreach(::QGraphicsItem *item, items) if (item->type() > ::QGraphicsItem::UserType)
-                    return item;
+        foreach(::QGraphicsItem *item, items) if (item->type() > ::QGraphicsItem::UserType)
+            return item;
 
         return 0;
     }
@@ -39,6 +39,7 @@ namespace nts {
                         QGraphicsItem *item = itemAt(me->scenePos());
                         if (item && item->type() == Port::Type) {
                             conn = new Connection(0);
+
                             scene->addItem(conn);
                             conn->setPort1((Port *) item);
                             conn->setPos1(item->scenePos());
@@ -76,7 +77,7 @@ namespace nts {
                         Port *port1 = conn->port1();
                         Port *port2 = (Port *) item;
 
-                        if (port1->block() != port2->block() && port1->isOutput() != port2->isOutput() &&
+                        if (/*!port1->getPin()->getTargetPin() && !port2->getPin()->getTargetPin()&&*/ port1->block() != port2->block() && port1->getPin()->getMode() != port2->getPin()->getMode() &&
                             !port1->isConnected(port2)) {
                             conn->setPos2(port2->scenePos());
                             conn->setPort2(port2);

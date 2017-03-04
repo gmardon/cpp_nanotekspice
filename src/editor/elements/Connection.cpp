@@ -50,9 +50,6 @@ namespace nts {
     void Connection::updatePath() {
         QPainterPath p;
 
-        //QPointF pos1(m_port1->scenePos());
-        //QPointF pos2(m_port2->scenePos());
-
         p.moveTo(pos1);
 
         qreal dx = pos2.x() - pos1.x();
