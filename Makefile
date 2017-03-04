@@ -1,5 +1,7 @@
 NAME				=		nanotekspice
 
+NAME_L				=		libnanotekspice.a
+
 CXX					=		g++
 
 NOW 				:=	$(shell date +"%d %h %g:%R")
@@ -43,13 +45,16 @@ CMD_P				=	$(SRC_P)commands/
 CMD					=	$(CMD_P)Commands.cpp
 
 SRC_P				=	src/
-SRC					=	$(SRC_P)main_parser.cpp	\
-						$(CMPT)					\
+SRC_L				=	$(SRC_P)core.cpp		\
 						$(PARSER)				\
+						$(CMPT)					\
 						$(CMD)					\
 						$(ERROR)
+SRC					=	$(SRC_P)main.cpp
 
 OBJ					=		$(SRC:.cpp=.o)
+
+OBJ_L				=		$(SRC_L:.cpp=.o)
 
 CXXFLAGS			+= 	-Wall -Wextra -pedantic -std=c++11 -g
 
@@ -57,18 +62,21 @@ INCLUDE				=	./include
 
 RM					=	rm -vf
 
+LB					=	ar rc
+
 all:		$(NAME)
 
-$(NAME):	$(OBJ)
-		@$(CXX) $(OBJ) -o $(NAME)
+$(NAME):	$(OBJ_L) $(OBJ)
+		@$(LB) $(NAME_L) $(OBJ_L)
+		@$(CXX) $(OBJ) -L. -l$(NAME) -o $(NAME)
 		@$(ECHO) $(HIGHLIGHTED)"COMPILATION SUCCEEDED ON "$(NOW)$(DEFAULT)
 
 clean:
-		@$(RM) $(OBJ)
+		@$(RM) $(OBJ) $(OBJ_L)
 		@$(ECHO) $(DELETION)"OBJs PROPERLY DELETED"$(DEFAULT)
 
 fclean:		clean
-		@$(RM) $(NAME)
+		@$(RM) $(NAME) $(NAME_L)
 		@$(ECHO) $(DELETION)"BINARY PROPERLY DELETED"$(DEFAULT)
 
 re:		fclean all

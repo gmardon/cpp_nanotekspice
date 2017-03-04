@@ -58,7 +58,7 @@ void set_inputs(std::map<std::string, nts::IComponent *> chipsets_m, char **arg,
         throw ErrorParser("Every inputs werent set", "arguments");
 }
 
-int main(int ac, char **av)
+int core(int ac, char **av)
 {
     if (ac < 2)
     {
