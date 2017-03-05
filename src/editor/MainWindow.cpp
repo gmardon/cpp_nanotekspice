@@ -5,20 +5,7 @@
 #include "Port.hpp"
 #include <typeinfo>
 #include <include/c4071.hpp>
-#include "c4001.hpp"
-#include "c4008.hpp"
-#include "c4011.hpp"
-#include "c4013.hpp"
-#include "c4017.hpp"
-#include "c4030.hpp"
-#include "c4069.hpp"
-#include "c4081.hpp"
-#include "c4040.hpp"
-#include "Input.hpp"
-#include "True.hpp"
-#include "False.hpp"
-#include "Clock.hpp"
-#include "Output.hpp"
+#include <include/Parser.hpp>
 
 namespace nts {
 
@@ -108,6 +95,8 @@ namespace nts {
             component = new nts::c4071();
         } else if (name == "c4081") {
             component = new nts::c4081();
+        } else if (name == "c4514") {
+            component = new nts::c4514();
         } else {
             return;
         }
@@ -125,27 +114,27 @@ namespace nts {
         for (auto &pin : component->getPins()) {
             switch (pin.getMode()) {
                 case Pin::Mode::U:
-                    b->addInputPort("UNDEFINED", const_cast<Pin*>(&pin));
+                    b->addInputPort("UNDEFINED", const_cast<Pin *>(&pin));
                     break;
 
                 case Pin::Mode::I:
-                    b->addInputPort("IN " + pin.getTargetPin(), const_cast<Pin*>(&pin));
+                    b->addInputPort("IN " + pin.getTargetPin(), const_cast<Pin *>(&pin));
                     break;
 
                 case Pin::Mode::O:
-                    b->addOutputPort("OUT " + pin.getTargetPin(), const_cast<Pin*>(&pin));
+                    b->addOutputPort("OUT " + pin.getTargetPin(), const_cast<Pin *>(&pin));
                     break;
 
                 case Pin::Mode::IO:
-                    b->addOutputPort("IN/OUT" + pin.getTargetPin(), const_cast<Pin*>(&pin));
+                    b->addOutputPort("IN/OUT" + pin.getTargetPin(), const_cast<Pin *>(&pin));
                     break;
 
                 case Pin::Mode::VSS:
-                    b->addOutputPort("VSS " + pin.getTargetPin(), const_cast<Pin*>(&pin));
+                    b->addOutputPort("VSS " + pin.getTargetPin(), const_cast<Pin *>(&pin));
                     break;
 
                 case Pin::Mode::VDD:
-                    b->addOutputPort("VDD " + pin.getTargetPin(), const_cast<Pin*>(&pin));
+                    b->addOutputPort("VDD " + pin.getTargetPin(), const_cast<Pin *>(&pin));
                     break;
             }
         }
@@ -166,9 +155,13 @@ namespace nts {
         if (fname.isEmpty())
             return;
 
-        QFile f(fname);
-        f.open(QFile::ReadOnly);
-        QDataStream ds(&f);
+        std::map<std::string, IComponent *> from = parser(fname.toStdString().c_str()); // todo add try catchs
+
+        std::vector<AComponent *> *components = new std::vector<AComponent *>();
+
+        std::map<std::string, nts::IComponent *>::iterator it;
+        for (std::map<std::string, nts::IComponent *>::iterator it = from.begin(); it != from.end(); ++it)
+            (*components).push_back(dynamic_cast<AComponent *>((it->second)));
     }
 
     void MainWindow::simulate() {
@@ -197,27 +190,27 @@ namespace nts {
             for (const auto &pin : component->getPins()) {
                 switch (pin.getMode()) {
                     case Pin::Mode::U:
-                        b->addInputPort("UNDEFINED", const_cast<Pin*>(&pin));
+                        b->addInputPort("UNDEFINED", const_cast<Pin *>(&pin));
                         break;
 
                     case Pin::Mode::I:
-                        b->addInputPort("IN " + pin.getTargetPin(), const_cast<Pin*>(&pin));
+                        b->addInputPort("IN " + pin.getTargetPin(), const_cast<Pin *>(&pin));
                         break;
 
                     case Pin::Mode::O:
-                        b->addOutputPort("OUT " + pin.getTargetPin(), const_cast<Pin*>(&pin));
+                        b->addOutputPort("OUT " + pin.getTargetPin(), const_cast<Pin *>(&pin));
                         break;
 
                     case Pin::Mode::IO:
-                        b->addOutputPort("IN/OUT" + pin.getTargetPin(), const_cast<Pin*>(&pin));
+                        b->addOutputPort("IN/OUT" + pin.getTargetPin(), const_cast<Pin *>(&pin));
                         break;
 
                     case Pin::Mode::VSS:
-                        b->addOutputPort("VSS " + pin.getTargetPin(), const_cast<Pin*>(&pin));
+                        b->addOutputPort("VSS " + pin.getTargetPin(), const_cast<Pin *>(&pin));
                         break;
 
                     case Pin::Mode::VDD:
-                        b->addOutputPort("VDD " + pin.getTargetPin(), const_cast<Pin*>(&pin));
+                        b->addOutputPort("VDD " + pin.getTargetPin(), const_cast<Pin *>(&pin));
                         break;
                 }
             }
