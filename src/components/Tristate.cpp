@@ -39,6 +39,6 @@ namespace nts
         else if (t == FALSE)
             std::cout << "0";
         else
-            std::cout << "UNDEFINED";
+            std::cout << "U";
     }
 }
