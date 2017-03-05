@@ -24,7 +24,7 @@ void set_inputs(std::map<std::string, nts::IComponent *> chipsets_m, char **arg,
     std::map<std::string, nts::IComponent *>::iterator it;
     int input = 0;
     for(std::map<std::string, nts::IComponent *>::iterator it = chipsets_m.begin(); it != chipsets_m.end(); ++it )
-        if (dynamic_cast<nts::AComponent *>((*it).second)->getType() == nts::AComponent::Type::I)
+        if (dynamic_cast<nts::AComponent *>((*it).second)->getType() == nts::AComponent::Type::I || dynamic_cast<nts::AComponent *>((*it).second)->getType() == nts::AComponent::Type::T)
             input++;
     std::regex rgx("^(\\S+)=(\\S+)$");
     std::smatch match;
@@ -36,7 +36,7 @@ void set_inputs(std::map<std::string, nts::IComponent *> chipsets_m, char **arg,
         {
             if ((it = chipsets_m.find(match[1])) != chipsets_m.end())
             {
-                if (dynamic_cast<nts::AComponent *>((*it).second)->getType() == nts::AComponent::Type::I)
+                if (dynamic_cast<nts::AComponent *>((*it).second)->getType() == nts::AComponent::Type::I || dynamic_cast<nts::AComponent *>((*it).second)->getType() == nts::AComponent::Type::T)
                 {
                     if (match[2] == "1")
                         (*it).second->Compute(2);

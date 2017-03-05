@@ -5,7 +5,7 @@ namespace nts
     Clock::Clock(const std::string &)
     {
         this->name = "Clock";
-        this->type = nts::AComponent::Type::C;
+        this->type = nts::AComponent::Type::T;
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins[0].setState(FALSE);
     }
@@ -16,6 +16,10 @@ namespace nts
         {
             if (pin_num_this == 0)
                 this->pins[0].setState(!this->pins[0].getState());
+            else if (pin_num_this == 2)
+                this->pins[0].setState(TRUE);
+            else if (pin_num_this == 3)
+                this->pins[0].setState(FALSE);
             else
                 throw Error ("Attempt to compute an invalid pin number", this->name + " " + std::to_string(pin_num_this));
             return (UNDEFINED);
