@@ -40,7 +40,7 @@ std::map<std::string, nts::IComponent *> create_chipset(std::stringstream &str, 
     std::regex rgx("^(\\S+)\\s+([^\\s(]+)(?:\\(([^\\s]+)\\))?$");
     std::smatch match;
     std::map<std::string, nts::IComponent *> chipsets;
-    while (std::getline(str, line) && line != ".links:")
+    while (std::getline(str, line) && line.find(".links:"))
         if (std::regex_search(line, match, rgx))
         {
             if (chipsets.find(match[2]) == chipsets.end())
@@ -54,7 +54,7 @@ std::map<std::string, nts::IComponent *> create_chipset(std::stringstream &str, 
         }
         else
             throw Error("Syntax error.", line);
-    if (line != ".links:")
+    if (line.find(".links:"))
         throw Error("No links section.", file);
     set_links(str, chipsets);
     return (chipsets);
@@ -77,7 +77,7 @@ std::map<std::string, nts::IComponent *> parser(const char *file)
                     str << line << std::endl;
             }
         std::getline(str, line);
-        if (line == ".chipsets:")
+        if (!line.find(".chipsets:"))
             return (create_chipset(str, file));
         else
             throw Error("No chipset section.", file);

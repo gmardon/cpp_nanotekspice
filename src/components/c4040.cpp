@@ -40,9 +40,9 @@ namespace nts
         else if (R == TRUE)
             this->value = 0;
         else if (C == FALSE && this->prevClock == TRUE)
-            this->value = (this->value + 1) % 10;
+            this->value = (this->value + 1);
         this->prevClock = C;
-        std::vector<int> values = {{12, 6, 5, 7, 4, 3, 2, 0, 1, 0, 0, 9, 8}};
+        std::vector<int> values = {{11, 5, 4, 6, 3, 2, 1, 0, 0, 0, 0, 8, 7, 9, 10}};
         int val = values[pin_num_this];
         if ((this->value >> val) & 1)
             return (TRUE);
