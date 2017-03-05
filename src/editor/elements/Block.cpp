@@ -25,7 +25,7 @@ namespace nts {
         height = vertMargin;
     }
 
-    Port *Block::addPort(const QString &name, const Pin* pin, bool isOutput, int flags, int ptr) {
+    Port *Block::addPort(const QString &name, Pin* pin, bool isOutput, int flags, int ptr) {
         Port *port = new Port(this);
         port->setName(name);
         port->setIsOutput(isOutput);
@@ -62,11 +62,11 @@ namespace nts {
         return port;
     }
 
-    void Block::addInputPort(const QString &name, const Pin *pin) {
+    void Block::addInputPort(const QString &name, Pin *pin) {
         addPort(name, pin, false);
     }
 
-    void Block::addOutputPort(const QString &name, const Pin *pin) {
+    void Block::addOutputPort(const QString &name, Pin *pin) {
         addPort(name, pin, true);
     }
 
@@ -82,6 +82,16 @@ namespace nts {
         if (&(this->getAComponent()->getPins()[index - 1]) == NULL)
             return NULL;
         return getPortFromPin(&(this->getAComponent()->getPins()[index - 1]));
+    }
+
+    size_t Block::getPinIdFromPin(Pin *pin) {
+        size_t pin_id = 0;
+        for (const auto &port : ports()) {
+            if (port->getPin() == pin)
+                return pin_id;
+            pin_id++;
+        }
+        return -1;
     }
 
     void Block::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
@@ -128,11 +138,11 @@ namespace nts {
         return value;
     }
 
-    void Block::setAComponent(const AComponent *component) {
+    void Block::setAComponent(AComponent *component) {
         this->aComponent = component;
     }
 
-    const AComponent *Block::getAComponent() {
+    AComponent *Block::getAComponent() {
         return this->aComponent;
     }
 }

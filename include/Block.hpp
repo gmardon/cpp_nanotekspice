@@ -17,11 +17,11 @@ namespace nts {
 
         Block(QGraphicsItem *parent = 0);
 
-        Port *addPort(const QString &name, const Pin* pin, bool isOutput, int flags = 0, int ptr = 0);
+        Port *addPort(const QString &name, Pin* pin, bool isOutput, int flags = 0, int ptr = 0);
 
-        void addInputPort(const QString &name, const Pin *pin);
+        void addInputPort(const QString &name, Pin *pin);
 
-        void addOutputPort(const QString &name, const Pin *pin);
+        void addOutputPort(const QString &name, Pin *pin);
 
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
@@ -29,15 +29,17 @@ namespace nts {
 
         Port *getPortFromPinId(size_t index);
 
+        size_t getPinIdFromPin(Pin *pin);
+
         Block *clone();
 
         QVector<Port *> ports();
 
         int type() const { return Type; }
 
-        const AComponent *getAComponent();
+        AComponent *getAComponent();
 
-        void setAComponent(const AComponent *component);
+        void setAComponent(AComponent *component);
 
     protected:
         QVariant itemChange(GraphicsItemChange change, const QVariant &value);
@@ -47,7 +49,7 @@ namespace nts {
         int vertMargin;
         int width;
         int height;
-        const AComponent *aComponent;
+        AComponent *aComponent;
     };
 }
 #endif // QNEBLOCK_H

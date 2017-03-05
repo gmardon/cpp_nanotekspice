@@ -2,8 +2,6 @@
 
 #include "Port.hpp"
 
-#include <QBrush>
-#include <QPen>
 #include <QGraphicsScene>
 
 namespace nts {
@@ -42,6 +40,14 @@ namespace nts {
         m_port2->connections().append(this);
     }
 
+    Port *Connection::getPort1() {
+        return this->m_port1;
+    }
+
+    Port *Connection::getPort2() {
+        return this->m_port2;
+    }
+
     void Connection::updatePosFromPorts() {
         pos1 = m_port1->scenePos();
         pos2 = m_port2->scenePos();
@@ -49,9 +55,6 @@ namespace nts {
 
     void Connection::updatePath() {
         QPainterPath p;
-
-        //QPointF pos1(m_port1->scenePos());
-        //QPointF pos2(m_port2->scenePos());
 
         p.moveTo(pos1);
 
@@ -72,5 +75,28 @@ namespace nts {
 
     Port *Connection::port2() const {
         return m_port2;
+    }
+
+    void Connection::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+        Q_UNUSED(option)
+        Q_UNUSED(widget)
+
+        if ((m_port2 == NULL)) {
+            painter->setPen(QPen(Qt::black, 2));
+            painter->setBrush(Qt::NoBrush);
+
+            painter->drawPath(path());
+            return;
+        }
+
+        if (m_port2->getPin()->getState() == TRUE) {
+            painter->setPen(QPen(Qt::red, 2));
+            painter->setBrush(Qt::NoBrush);
+        } else {
+            painter->setPen(QPen(Qt::black, 2));
+            painter->setBrush(Qt::NoBrush);
+        }
+
+        painter->drawPath(path());
     }
 }
