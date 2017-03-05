@@ -12,10 +12,12 @@ namespace nts
 
     nts::Tristate Clock::Compute(std::size_t pin_num_this)
     {
-        if (pin_num_this != 1)
+       if (pin_num_this != 1)
         {
             if (pin_num_this == 0)
                 this->pins[0].setState(!this->pins[0].getState());
+            else
+                throw Error ("Attempt to compute an invalid pin number", this->name + " " + std::to_string(pin_num_this));
             return (UNDEFINED);
         }
         return (this->pins[0].getState());

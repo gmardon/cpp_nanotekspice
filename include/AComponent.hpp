@@ -41,6 +41,7 @@ namespace nts
         void setName(const std::string &);
         void setArg(const std::string &);
         const std::string *save_pins() const;
+        nts::Tristate reset_pins();
 
     protected:
         Type type;

@@ -34,9 +34,11 @@ namespace nts
 
     nts::Tristate c4514::Compute(std::size_t pin_num_this)
     {
+        if (pin_num_this == 0)
+            return (this->reset_pins());
         if (pin_num_this < 1 || pin_num_this > 23 || pin_num_this == 12)
-            return (UNDEFINED);
-        pin_num_this--;
+             throw Error ("Attempt to compute an invalid pin number", this->name + " " + std::to_string(pin_num_this));
+       pin_num_this--;
         if (this->pins[pin_num_this].getMode() == Pin::I)
             return (this->pins[pin_num_this].compute());
         else

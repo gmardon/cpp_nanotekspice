@@ -45,8 +45,13 @@ namespace nts
 
     nts::Tristate Pin::compute()
     {
+        if (this->state != UNDEFINED)
+            return (this->state);
         if (this->component)
-            return (this->component->Compute(this->target_pin));
+        {
+            this->state = this->component->Compute(this->target_pin);
+            return (this->state);
+        }
         throw Error("Attempt to compute a linkless pin.", "FLEMME DE DIRE OU");
     }
 

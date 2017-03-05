@@ -14,6 +14,17 @@ namespace nts
 
     const std::vector<Pin> &AComponent::getPins() const {return (this->pins);}
 
+    nts::Tristate AComponent::reset_pins()
+    {
+        size_t i = 0;
+        while (i < this->pins.size())
+        {
+            this->pins[i].setState(UNDEFINED);
+            i++;
+        }
+        return (UNDEFINED);
+    }
+
     const std::string *AComponent::save_pins() const
     {
         size_t i = 0;

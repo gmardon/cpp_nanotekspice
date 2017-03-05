@@ -26,6 +26,8 @@
         "exception": "cpp",
         "initializer_list": "cpp",
         "type_traits": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "tuple": "cpp",
+        "utility": "cpp"
     }
 }

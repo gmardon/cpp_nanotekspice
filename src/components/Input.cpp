@@ -12,12 +12,16 @@ namespace nts
 
     nts::Tristate Input::Compute(std::size_t pin_num_this)
     {
-        if (pin_num_this != 1)
+        if (pin_num_this == 0)
+            return (UNDEFINED);
+       if (pin_num_this != 1)
         {
             if (pin_num_this == 2)
                 this->pins[0].setState(TRUE);
             else if (pin_num_this == 3)
                 this->pins[0].setState(FALSE);
+            else
+                throw Error ("Attempt to compute an invalid pin number", this->name + " " + std::to_string(pin_num_this));
             return (UNDEFINED);
         }
         return (this->pins[0].getState());

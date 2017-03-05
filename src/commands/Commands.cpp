@@ -34,8 +34,7 @@ void dump(std::vector<nts::IComponent *> chipsets)
 void simulate(std::vector<nts::IComponent *> chipsets_v)
 {
     for(std::vector<nts::IComponent *>::iterator it = chipsets_v.begin(); it != chipsets_v.end(); ++it )
-        if (dynamic_cast<nts::AComponent *>(*it)->getType() == nts::AComponent::Type::T)
-            (*it)->Compute(0);
+        (*it)->Compute(0);
 }
 
 void display(std::vector<nts::IComponent *> chipsets)
