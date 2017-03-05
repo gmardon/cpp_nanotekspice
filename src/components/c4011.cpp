@@ -31,8 +31,8 @@ namespace nts
             return (this->pins[pin_num_this].compute());
         else
         {
-            Tristate t1 = this->pins[pin_num_this + ((pin_num_this % 2) ? (1) : (-1))].compute();
-            Tristate t2 = this->pins[pin_num_this + ((pin_num_this % 2) ? (2) : (-2))].compute();
+            Tristate t1 = this->pins[pin_num_this + ((pin_num_this == 2 || pin_num_this == 9) ? (-1) : (1))].compute();
+            Tristate t2 = this->pins[pin_num_this + ((pin_num_this == 2 || pin_num_this == 9) ? (-2) : (2))].compute();
             return (!(t1 && t2));
         }
     }

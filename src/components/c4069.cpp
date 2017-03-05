@@ -32,7 +32,12 @@ namespace nts
         else
         {
             Tristate t = this->pins[pin_num_this - 1].compute();
-            return (!t);
+            if (t == TRUE)
+                return (FALSE);
+            else if (t == FALSE)
+                return (TRUE);
+            else
+                return (UNDEFINED);
         }
     }
 
