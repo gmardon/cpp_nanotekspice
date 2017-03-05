@@ -47,7 +47,7 @@ namespace nts
                 return (FALSE);
             if (this->pins[22].compute() == UNDEFINED || this->pins[0].compute() == UNDEFINED)
                 return (FALSE);
-            if (this->prevClock == TRUE && this->pins[0].compute() == FALSE)
+            if (this->pins[0].compute() == TRUE)
             {
                 if (this->pins[1].compute() == UNDEFINED || this->pins[2].compute() == UNDEFINED || this->pins[20].compute() == UNDEFINED || this->pins[21].compute() == UNDEFINED)
                     return (UNDEFINED);
@@ -61,7 +61,6 @@ namespace nts
                 if (this->pins[21].compute() == TRUE)
                     this->value += 8;
             }
-            this->prevClock = this->pins[0].compute();
             std::vector<unsigned long int> values = {{11, 9, 10, 8, 7, 6, 5, 4, 18, 17, 20, 19, 14, 13, 16, 15}};
             if (pin_num_this == values[this->value] - 1)
                 return (TRUE);
