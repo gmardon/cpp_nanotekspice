@@ -6,6 +6,6 @@
 # include <fstream>
 # include <vector>
 
-# include "../../include/AComponent.hpp"
+# include "AComponent.hpp"
 
 #endif

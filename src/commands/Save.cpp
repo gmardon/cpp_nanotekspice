@@ -9,6 +9,8 @@ void save(const std::string &file, std::vector<nts::IComponent *> components)
     else
         save.open(file + ".nts");
 
+    if (!save.is_open())
+        throw Error ("Saving file impossible", file);
     save << ".chipsets:" << std::endl;
     for (auto it = components.begin(); it != components.end(); ++it)
         save << dynamic_cast<nts::AComponent *>(*it)->save() << std::endl;
