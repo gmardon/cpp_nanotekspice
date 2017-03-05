@@ -1,15 +1,15 @@
-#ifndef ERRORPARSER_HPP_
-# define ERRORPARSER_HPP_
+#ifndef ERROR_HPP_
+# define ERROR_HPP_
 
 # include <string>
 # include <iostream>
 # include <exception>
 
-class ErrorParser : public std::exception
+class Error : public std::exception
 {
     public:
-        ErrorParser(const std::string & = "Unknow error.", const std::string & = "Unknow") noexcept;
-        ~ErrorParser() noexcept {};
+        Error(const std::string & = "Unknow error.", const std::string & = "Unknow") noexcept;
+        ~Error() noexcept {};
         std::string const &getIndicator() const noexcept;
         const char * what() const noexcept;
 

@@ -9,7 +9,7 @@
 # include "Pin.hpp"
 # include "Tristate.hpp"
 
-# include "ErrorParser.hpp"
+# include "Error.hpp"
 
 namespace nts
 {

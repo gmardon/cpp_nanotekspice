@@ -43,21 +43,21 @@ void set_inputs(std::map<std::string, nts::IComponent *> chipsets_m, char **arg,
                     else if (match[2] == "0")
                         (*it).second->Compute(3);
                     else
-                        throw ErrorParser("Invalid value.", match[2]);
+                        throw Error("Invalid value.", match[2]);
                     input--;
                 }
                 else
-                    throw ErrorParser("Component is not an variable input.", match[1]);
+                    throw Error("Component is not an variable input.", match[1]);
             }
             else
-                throw ErrorParser("No component with this name.", match[1]);
+                throw Error("No component with this name.", match[1]);
         }
         else
-            throw ErrorParser("Invalid argument.", arg[i]);
+            throw Error("Invalid argument.", arg[i]);
         i++;
     }
     if (input)
-        throw ErrorParser("Every inputs werent set", "arguments");
+        throw Error("Every inputs werent set", "arguments");
 }
 
 int core(int ac, char **av)
@@ -74,7 +74,7 @@ int core(int ac, char **av)
         set_inputs(chipsets_m, &av[2], ac - 2);
         launch(chipsets_m, chipsets_v);
     }
-    catch (const ErrorParser &error)
+    catch (const Error &error)
     {
         std::cerr << "\x1b[31mAn error occured\x1b[0m: " << error.what() << " \x1b[31mat\x1b[0m: " << error.getIndicator() << std::endl;
         return (1);

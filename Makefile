@@ -40,7 +40,7 @@ PARSER				=	$(PARSER_P)Parser.cpp	\
 						$(PARSER_P)Create.cpp	\
 
 ERROR_P				=	$(SRC_P)errors/
-ERROR				=	$(ERROR_P)ErrorParser.cpp
+ERROR				=	$(ERROR_P)Error.cpp
 
 CMD_P				=	$(SRC_P)commands/
 CMD					=	$(CMD_P)Commands.cpp	\

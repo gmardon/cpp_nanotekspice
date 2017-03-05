@@ -86,15 +86,15 @@ int launch(std::map<std::string, nts::IComponent *> chipsets_m, std::vector<nts:
                     else if (match[2] == "0")
                         (*it).second->Compute(3);
                     else
-                        throw ErrorParser("Invalid value.", match[2]);
+                        throw Error("Invalid value.", match[2]);
                 }
                 else
-                    throw ErrorParser("Component is not an variable input.", match[1]);
+                    throw Error("Component is not an variable input.", match[1]);
             }
             else
-                throw ErrorParser("No component with this name.", match[1]);
+                throw Error("No component with this name.", match[1]);
         }
         else
-            throw ErrorParser("Unknown command.", command);
+            throw Error("Unknown command.", command);
     }
 }

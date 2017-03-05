@@ -47,7 +47,7 @@ namespace nts
     {
         if (this->component)
             return (this->component->Compute(this->target_pin));
-        throw ErrorParser("Attempt to compute a linkless pin.", "FLEMME DE DIRE OU");
+        throw Error("Attempt to compute a linkless pin.", "FLEMME DE DIRE OU");
     }
 
     Pin::Mode Pin::getMode() const {return (this->mode);}

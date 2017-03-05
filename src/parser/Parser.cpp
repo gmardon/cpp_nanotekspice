@@ -1,5 +1,5 @@
 #include "Parser.hpp"
-#include "ErrorParser.hpp"
+#include "Error.hpp"
 
 bool is_non_empty(std::string &line)
 {
@@ -30,7 +30,7 @@ void set_links(std::stringstream &str, std::map<std::string, nts::IComponent *> 
 //                std::cout << "Link set between chipsets \x1b[31m" << match[1] << "\x1b[0m and \x1b[31m" << match[3]<< "\x1b[0m with pins \x1b[32m" << match[2] << "\x1b[0m and \x1b[32m" << match[4] << "\x1b[0m." << std::endl;
             }
             else
-                throw ErrorParser("Unknown component name.", ((it1 == chipsets.end()) ? (match[1]) : (match[3])));
+                throw Error("Unknown component name.", ((it1 == chipsets.end()) ? (match[1]) : (match[3])));
         }
 }
 
@@ -50,12 +50,12 @@ std::map<std::string, nts::IComponent *> create_chipset(std::stringstream &str, 
                 chipsets[match[2]] = cmpt;
             }
             else
-                throw ErrorParser("Several components share the same name.", match[2]);
+                throw Error("Several components share the same name.", match[2]);
         }
         else
-            throw ErrorParser("Syntax error.", line);
+            throw Error("Syntax error.", line);
     if (line != ".links:")
-        throw ErrorParser("No links section.", file);
+        throw Error("No links section.", file);
     set_links(str, chipsets);
     return (chipsets);
 }
@@ -80,9 +80,9 @@ std::map<std::string, nts::IComponent *> parser(const char *file)
         if (line == ".chipsets:")
             return (create_chipset(str, file));
         else
-            throw ErrorParser("No chipset section.", file);
+            throw Error("No chipset section.", file);
     }
     else
-        throw ErrorParser("No such file.", file);
+        throw Error("No such file.", file);
     return (*new std::map<std::string, nts::IComponent *>);
 }

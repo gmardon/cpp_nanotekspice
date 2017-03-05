@@ -5,7 +5,7 @@
 # include <iostream>
 
 #include "IComponent.hpp"
-#include "ErrorParser.hpp"
+#include "Error.hpp"
 
 namespace nts
 {
