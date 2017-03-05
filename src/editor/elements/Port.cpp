@@ -58,11 +58,11 @@ namespace nts {
         return isOutput_;
     }
 
-    void Port::setPin(const Pin* pin) {
+    void Port::setPin(Pin* pin) {
         this->pin = pin;
     }
 
-    const Pin *Port::getPin() {
+    Pin *Port::getPin() {
         return this->pin;
     }
 
@@ -86,7 +86,7 @@ namespace nts {
         }
     }
 
-    Block *Port::block() const {
+    Block *Port::block() {
         return m_block;
     }
 

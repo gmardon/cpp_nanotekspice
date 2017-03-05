@@ -2,6 +2,7 @@
 #define QNECONNECTION_H
 
 #include <QGraphicsPathItem>
+#include <qpainter.h>
 
 
 namespace nts {
@@ -25,6 +26,10 @@ namespace nts {
 
         void setPort2(Port *p);
 
+        Port *getPort1();
+
+        Port *getPort2();
+
         void updatePosFromPorts();
 
         void updatePath();
@@ -35,6 +40,7 @@ namespace nts {
 
         int type() const { return Type; }
 
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     private:
         ::QPointF pos1;
         ::QPointF pos2;

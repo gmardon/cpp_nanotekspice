@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QtWidgets>
+#include <qmenubar.h>
 #include "AComponent.hpp"
 #include "IComponent.hpp"
 #include "Pin.hpp"
@@ -30,6 +31,8 @@ namespace nts {
 
         void loadFile();
 
+        void simulate();
+
         void addComponent(std::string name);
 
     private:
@@ -37,7 +40,7 @@ namespace nts {
         QMenu *fileMenu;
         EditorView *view;
         QGraphicsScene *scene;
-        std::list<Block*> *blocks;
+        std::vector<Block*> *blocks;
 
         std::vector<Pin> getPorts(AComponent *component);
     };

@@ -81,6 +81,17 @@ namespace nts {
                             !port1->isConnected(port2)) {
                             conn->setPos2(port2->scenePos());
                             conn->setPort2(port2);
+
+                            if (conn->getPort1()->getPin()->getMode() == Pin::Mode::O && conn->getPort2()->getPin()->getMode() == Pin::Mode::I) {
+                                conn->getPort2()->getPin()->setComponent(*conn->getPort1()->block()->getAComponent());
+                                conn->getPort2()->getPin()->setTarget(conn->getPort1()->block()->getPinIdFromPin(conn->getPort1()->getPin()));
+                                conn->getPort2()->getPin()->setState(conn->getPort2()->getPin()->compute());
+                            } else if (conn->getPort1()->getPin()->getMode() == Pin::Mode::I && conn->getPort2()->getPin()->getMode() == Pin::Mode::O) {
+                                conn->getPort1()->getPin()->setComponent(*conn->getPort2()->block()->getAComponent());
+                                conn->getPort1()->getPin()->setTarget(conn->getPort2()->block()->getPinIdFromPin(conn->getPort2()->getPin()));
+                                conn->getPort1()->getPin()->setState(conn->getPort1()->getPin()->compute());
+                            }
+// TODO need to support all
                             conn->updatePath();
                             conn = 0;
                             return true;

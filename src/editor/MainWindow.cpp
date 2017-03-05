@@ -41,11 +41,17 @@ namespace nts {
         saveAct->setStatusTip(tr("Save a file"));
         connect(saveAct, SIGNAL(triggered()), this, SLOT(saveFile()));
 
+        QAction *simulateAct = new QAction(tr("&Simulate"), this);
+        saveAct->setStatusTip(tr("Simulate"));
+        connect(simulateAct, SIGNAL(triggered()), this, SLOT(simulate()));
+
         fileMenu = menuBar()->addMenu(tr("&File"));
         fileMenu->addAction(loadAct);
         fileMenu->addAction(saveAct);
         fileMenu->addSeparator();
         fileMenu->addAction(quitAct);
+
+        menuBar()->addAction(simulateAct);
 
         setWindowTitle(tr("Nanotekspice"));
 
@@ -61,7 +67,7 @@ namespace nts {
         nodesEditor = new Editor(this);
         nodesEditor->install(scene);
 
-        blocks = new std::list<Block *>();
+        blocks = new std::vector<Block *>();
 
         this->setMinimumWidth(480);
         this->setMinimumHeight(640);
@@ -108,7 +114,7 @@ namespace nts {
 
         Block *b = new Block(0);
         scene->addItem(b);
-        blocks->push_front(b);
+        blocks->push_back(b);
         b->setAComponent(component);
         b->addPort(QString::fromStdString(component->getName()), NULL, 0, Port::NamePort);
 
@@ -116,30 +122,30 @@ namespace nts {
 
         b->setPos(pos.x(), pos.y() - 10);
 
-        for (const auto &pin : component->getPins()) {
+        for (auto &pin : component->getPins()) {
             switch (pin.getMode()) {
                 case Pin::Mode::U:
-                    b->addInputPort("UNDEFINED", &pin);
+                    b->addInputPort("UNDEFINED", const_cast<Pin*>(&pin));
                     break;
 
                 case Pin::Mode::I:
-                    b->addInputPort("IN " + pin.getTargetPin(), &pin);
+                    b->addInputPort("IN " + pin.getTargetPin(), const_cast<Pin*>(&pin));
                     break;
 
                 case Pin::Mode::O:
-                    b->addOutputPort("OUT " + pin.getTargetPin(), &pin);
+                    b->addOutputPort("OUT " + pin.getTargetPin(), const_cast<Pin*>(&pin));
                     break;
 
                 case Pin::Mode::IO:
-                    b->addOutputPort("IN/OUT" + pin.getTargetPin(), &pin);
+                    b->addOutputPort("IN/OUT" + pin.getTargetPin(), const_cast<Pin*>(&pin));
                     break;
 
                 case Pin::Mode::VSS:
-                    b->addOutputPort("VSS " + pin.getTargetPin(), &pin);
+                    b->addOutputPort("VSS " + pin.getTargetPin(), const_cast<Pin*>(&pin));
                     break;
 
                 case Pin::Mode::VDD:
-                    b->addOutputPort("VDD " + pin.getTargetPin(), &pin);
+                    b->addOutputPort("VDD " + pin.getTargetPin(), const_cast<Pin*>(&pin));
                     break;
             }
         }
@@ -165,8 +171,16 @@ namespace nts {
         QDataStream ds(&f);
     }
 
+    void MainWindow::simulate() {
+        for (const auto &block : *blocks) {
+            if (const_cast<nts::AComponent *>(block->getAComponent())->getType() == nts::AComponent::Type::IC) {
+                const_cast<nts::AComponent *>(block->getAComponent())->Compute(1);
+            }
+        }
+    }
+
     void MainWindow::setComponents(std::vector<AComponent *> components) {
-        blocks = new std::list<Block *>();
+        blocks = new std::vector<Block *>();
 
         int index = 0;
         for (const auto &component : components) {
@@ -174,7 +188,7 @@ namespace nts {
             Block *b = new Block(0);
             b->setPos(120 * index, index / 3 * 120);
             scene->addItem(b);
-            blocks->push_front(b);
+            blocks->push_back(b);
             b->setAComponent(component);
             b->addPort(QString::fromStdString(component->getName()), NULL, 0, Port::NamePort);
 
@@ -183,27 +197,27 @@ namespace nts {
             for (const auto &pin : component->getPins()) {
                 switch (pin.getMode()) {
                     case Pin::Mode::U:
-                        b->addInputPort("UNDEFINED", &pin);
+                        b->addInputPort("UNDEFINED", const_cast<Pin*>(&pin));
                         break;
 
                     case Pin::Mode::I:
-                        b->addInputPort("IN " + pin.getTargetPin(), &pin);
+                        b->addInputPort("IN " + pin.getTargetPin(), const_cast<Pin*>(&pin));
                         break;
 
                     case Pin::Mode::O:
-                        b->addOutputPort("OUT " + pin.getTargetPin(), &pin);
+                        b->addOutputPort("OUT " + pin.getTargetPin(), const_cast<Pin*>(&pin));
                         break;
 
                     case Pin::Mode::IO:
-                        b->addOutputPort("IN/OUT" + pin.getTargetPin(), &pin);
+                        b->addOutputPort("IN/OUT" + pin.getTargetPin(), const_cast<Pin*>(&pin));
                         break;
 
                     case Pin::Mode::VSS:
-                        b->addOutputPort("VSS " + pin.getTargetPin(), &pin);
+                        b->addOutputPort("VSS " + pin.getTargetPin(), const_cast<Pin*>(&pin));
                         break;
 
                     case Pin::Mode::VDD:
-                        b->addOutputPort("VDD " + pin.getTargetPin(), &pin);
+                        b->addOutputPort("VDD " + pin.getTargetPin(), const_cast<Pin*>(&pin));
                         break;
                 }
             }

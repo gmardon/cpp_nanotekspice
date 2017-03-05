@@ -43,7 +43,7 @@ namespace nts {
 
         int type() const { return Type; }
 
-        Block *block() const;
+        Block *block();
 
         quint64 ptr();
 
@@ -51,9 +51,9 @@ namespace nts {
 
         bool isConnected(Port *);
 
-        void setPin(const Pin* pin);
+        void setPin(Pin* pin);
 
-        const Pin *getPin();
+        Pin *getPin();
     protected:
         QVariant itemChange(GraphicsItemChange change, const QVariant &value);
 
@@ -67,7 +67,7 @@ namespace nts {
         QVector<Connection *> m_connections;
         int m_portFlags;
         quint64 m_ptr;
-        const Pin *pin;
+        Pin *pin;
     };
 }
 #endif // QNEPORT_H
