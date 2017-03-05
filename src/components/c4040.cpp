@@ -33,7 +33,7 @@ namespace nts
         pin_num_this--;
         if (this->pins[pin_num_this].getMode() == Pin::I)
             return (this->pins[pin_num_this].compute());
-        if (pin_num_this == 2)
+        if (pin_num_this == 2 && !this->pins[12].isLinked())
         {
             if (this->value == 16)
                 return (TRUE);
