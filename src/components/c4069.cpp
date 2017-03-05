@@ -13,12 +13,12 @@ namespace nts
         this->pins.push_back(Pin{nts::Pin::I});
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins.push_back(Pin{nts::Pin::VSS});
-        this->pins.push_back(Pin{nts::Pin::I});
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins.push_back(Pin{nts::Pin::I});
         this->pins.push_back(Pin{nts::Pin::O});
         this->pins.push_back(Pin{nts::Pin::I});
         this->pins.push_back(Pin{nts::Pin::O});
+        this->pins.push_back(Pin{nts::Pin::I});
         this->pins.push_back(Pin{nts::Pin::VDD});
     }
 
@@ -33,7 +33,7 @@ namespace nts
             return (this->pins[pin_num_this].compute());
         else
         {
-            Tristate t = this->pins[pin_num_this - 1].compute();
+            Tristate t = this->pins[pin_num_this + ((pin_num_this < 7) ? (-1) : (1))].compute();
             if (t == TRUE)
                 return (FALSE);
             else if (t == FALSE)
