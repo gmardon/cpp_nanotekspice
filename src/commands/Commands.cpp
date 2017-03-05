@@ -71,8 +71,8 @@ int launch(std::map<std::string, nts::IComponent *> chipsets_m, std::vector<nts:
             dump(chipsets_v);
         else if (command == "pony")
             pony();
-        else if (command == "save")
-            save("test", chipsets_v);
+        else if (command.substr(0, 5) == "save_")
+            save(command.substr(5, command.size() - 5), chipsets_v);
         else if (std::regex_search(command, match, rgx))
         {
             std::map<std::string, nts::IComponent *>::iterator it;

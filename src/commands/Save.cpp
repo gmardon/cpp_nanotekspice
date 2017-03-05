@@ -2,7 +2,12 @@
 
 void save(const std::string &file, std::vector<nts::IComponent *> components)
 {
-    std::ofstream save(file + ".nts");
+    size_t size = file.size();
+    std::ofstream save;
+    if (size > 4 && file.substr(file.length() - 4) == ".nts")
+        save.open(file);
+    else
+        save.open(file + ".nts");
 
     save << ".chipsets:" << std::endl;
     for (auto it = components.begin(); it != components.end(); ++it)
