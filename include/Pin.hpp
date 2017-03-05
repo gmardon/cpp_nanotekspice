@@ -33,10 +33,12 @@ namespace nts
         void setTarget(std::size_t);
         void setState(Tristate);
         void setMode(Mode);
+        void setCalc(int);
         bool isLinked() const;
         IComponent &getComponent() const;
         std::size_t getTargetPin() const;
         Tristate getState() const;
+        int getReset() const;
         Mode getMode() const;
 
     public:
@@ -45,6 +47,8 @@ namespace nts
     private:
         Mode mode;
         nts::IComponent *component;
+        int calculating;
+        int to_reset;
         Tristate state;
         std::size_t target_pin;
     };

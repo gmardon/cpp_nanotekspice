@@ -19,7 +19,9 @@ namespace nts
         size_t i = 0;
         while (i < this->pins.size())
         {
-            this->pins[i].setState(UNDEFINED);
+            if (this->pins[i].getReset())
+                this->pins[i].setState(UNDEFINED);
+            this->pins[i].setCalc(0);
             i++;
         }
         return (UNDEFINED);
