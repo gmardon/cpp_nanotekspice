@@ -33,6 +33,13 @@ namespace nts
         pin_num_this--;
         if (this->pins[pin_num_this].getMode() == Pin::I)
             return (this->pins[pin_num_this].compute());
+        if (pin_num_this == 2)
+        {
+            if (this->value == 16)
+                return (TRUE);
+            else
+                return (FALSE);
+        }
         Tristate C = this->pins[9].compute();
         Tristate R = this->pins[10].compute();
         if (C == UNDEFINED || R == UNDEFINED)
