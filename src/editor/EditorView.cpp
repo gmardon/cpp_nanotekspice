@@ -24,9 +24,9 @@ namespace nts {
     void EditorView::showContextMenu(const QPoint &pos)
     {
         QMenu contextMenu("Context menu", this);
-        std::string components[14] = {"true", "false", "clock", "output", "c4001", "c4008", "c4011", "c4013", "c4017", "c4030", "c4040", "c4069", "c4071", "c4081"};
+        std::string components[15] = {"true", "false", "clock", "output", "c4001", "c4008", "c4011", "c4013", "c4017", "c4030", "c4040", "c4069", "c4071", "c4081", "c4514"};
 
-        for (unsigned int i = 0; i < 14; i++) {
+        for (unsigned int i = 0; i < 15; i++) {
             QString text = QString::fromStdString("add " + components[i]);
 
             QAction *action = new QAction(text, this);
