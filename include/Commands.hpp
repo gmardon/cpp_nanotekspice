@@ -10,5 +10,6 @@
 #include "AComponent.hpp"
 
 int launch(std::map<std::string, nts::IComponent *>, std::vector<nts::IComponent *>);
+void save(const std::string &file, std::vector<nts::IComponent *> components);
 
 #endif

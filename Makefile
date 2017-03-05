@@ -43,7 +43,8 @@ ERROR_P				=	$(SRC_P)errors/
 ERROR				=	$(ERROR_P)ErrorParser.cpp
 
 CMD_P				=	$(SRC_P)commands/
-CMD					=	$(CMD_P)Commands.cpp
+CMD					=	$(CMD_P)Commands.cpp	\
+						$(CMD_P)Save.cpp
 
 SRC_P				=	src/
 SRC_L				=	$(SRC_P)core.cpp		\

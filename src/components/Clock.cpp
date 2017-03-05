@@ -34,6 +34,11 @@ namespace nts
         std::cout << "Input " << this->name << std::endl;
     }
 
+    const std::string &Clock::save() const
+    {
+        return (*(new std::string ("clock " + this->name)));
+    }
+
     Clock::~Clock(void)
     {
     }

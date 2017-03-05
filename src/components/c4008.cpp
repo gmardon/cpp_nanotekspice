@@ -75,6 +75,11 @@ namespace nts
         std::cout << "Chipset " << this->name << std::endl;
     }
 
+    const std::string &c4008::save() const
+    {
+        return (*(new std::string ("4008 " + this->name)));
+    }
+
     c4008::~c4008(void)
     {
     }

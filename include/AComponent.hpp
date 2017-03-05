@@ -31,16 +31,21 @@ namespace nts
         virtual void SetLink(std::size_t pin_num_this, nts::IComponent &component, std::size_t pin_num_target) = 0;
         virtual void Dump(void) const = 0;
         virtual ~AComponent(void) {}
+        virtual const std::string &save() const = 0;
 
     public:
         const std::string &getName() const;
+        const std::string &getArg() const;
         Type getType() const;
         const std::vector<Pin> &getPins() const;
         void setName(const std::string &);
+        void setArg(const std::string &);
+        const std::string *save_pins() const;
 
     protected:
         Type type;
         std::string name;
+        std::string arg;
         std::vector<Pin> pins;
     };
 }

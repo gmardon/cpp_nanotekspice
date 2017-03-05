@@ -33,6 +33,7 @@ namespace nts
         void setTarget(std::size_t);
         void setState(Tristate);
         void setMode(Mode);
+        bool isLinked() const;
         IComponent &getComponent() const;
         std::size_t getTargetPin() const;
         Tristate getState() const;

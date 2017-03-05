@@ -29,6 +29,11 @@ namespace nts
         std::cout << "Output " << this->name << std::endl;
     }
 
+    const std::string &Output::save() const
+    {
+        return (*(new std::string ("output " + this->name)));
+    }
+
     Output::~Output(void)
     {
     }

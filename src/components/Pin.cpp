@@ -30,6 +30,13 @@ namespace nts
 
     void Pin::setMode(Mode _mode) {this->mode = _mode;}
 
+    bool Pin::isLinked() const
+    {
+        if (this->component)
+            return (true);
+        return (false);
+    }
+
     IComponent &Pin::getComponent() const {return (*this->component);}
 
     std::size_t Pin::getTargetPin() const {return (this->target_pin);}

@@ -30,6 +30,11 @@ namespace nts
         std::cout << "Input " << this->name << std::endl;
     }
 
+    const std::string &True::save() const
+    {
+        return (*(new std::string ("true " + this->name)));
+    }
+
     True::~True(void)
     {
     }
