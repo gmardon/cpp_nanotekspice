@@ -17,6 +17,7 @@ namespace nts
 
     private:
         int value;
+        int changed;
         Tristate prevClock0;
         Tristate prevClock1;
     };
