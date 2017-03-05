@@ -1,0 +1,51 @@
+.chipsets:
+input i1
+input i2
+input i3
+input i4
+input iI
+input iS
+
+4514 c4514
+
+output o1
+output o2
+output o3
+output o4
+output o5
+output o6
+output o7
+output o8
+output o9
+output o10
+output o11
+output o12
+output o13
+output o14
+output o15
+output o16
+
+.links:
+o1:1 c4514:11
+o2:1 c4514:9
+o3:1 c4514:10
+o4:1 c4514:8
+o5:1 c4514:7
+o6:1 c4514:6
+o7:1 c4514:5
+o8:1 c4514:4
+o9:1 c4514:18
+o10:1 c4514:17
+o11:1 c4514:20
+o12:1 c4514:19
+o13:1 c4514:14
+o14:1 c4514:13
+o15:1 c4514:16
+o16:1 c4514:15
+
+c4514:2 i1:1
+c4514:3 i2:1
+c4514:21 i3:1
+c4514:22 i4:1
+c4514:1 iS:1
+c4514:23 iI:1

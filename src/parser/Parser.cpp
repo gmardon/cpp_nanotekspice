@@ -27,6 +27,7 @@ void set_links(std::stringstream &str, std::map<std::string, nts::IComponent *> 
             {
                 it1->second->SetLink(stoi(match[2]), *(it2->second), stoi(match[4]));
                 it2->second->SetLink(stoi(match[4]), *(it1->second), stoi(match[2]));
+//                std::cout << "Link set between chipsets \x1b[31m" << match[1] << "\x1b[0m and \x1b[31m" << match[3]<< "\x1b[0m with pins \x1b[32m" << match[2] << "\x1b[0m and \x1b[32m" << match[4] << "\x1b[0m." << std::endl;
             }
             else
                 throw ErrorParser("Unknown component name.", ((it1 == chipsets.end()) ? (match[1]) : (match[3])));

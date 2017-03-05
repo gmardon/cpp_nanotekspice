@@ -36,7 +36,12 @@ namespace nts
 
     Tristate Pin::getState() const {return (this->state);}
 
-    nts::Tristate Pin::compute() {return (this->component->Compute(this->target_pin));}
+    nts::Tristate Pin::compute()
+    {
+        //if (this->component)
+            return (this->component->Compute(this->target_pin));
+        //throw ErrorParser("Attempt to compute a linkless pin.", "FLEMME DE DIRE OU");
+    }
 
     Pin::Mode Pin::getMode() const {return (this->mode);}
 }

@@ -21,7 +21,7 @@ nts::IComponent * Create::createComponent(const std::string &type, const std::st
         {"4071", {[](const std::string &value) {return (new nts::c4071(value));}}},
         {"4081", {[](const std::string &value) {return (new nts::c4081(value));}}},
         // {"4094", {[](const std::string &value) {return (new nts::c4094(value));}}},
-        // {"4514", {[](const std::string &value) {return (new nts::c4514(value));}}},
+        {"4514", {[](const std::string &value) {return (new nts::c4514(value));}}},
         // {"4801", {[](const std::string &value) {return (new nts::c4801(value));}}},
         // {"2716", {[](const std::string &value) {return (new nts::c2716(value));}}}
     };

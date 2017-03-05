@@ -32,7 +32,8 @@ CMPT				=	$(CMPT_P)AComponent.cpp	\
 						$(CMPT_P)c4040.cpp		\
 						$(CMPT_P)c4069.cpp		\
 						$(CMPT_P)c4071.cpp		\
-						$(CMPT_P)c4081.cpp
+						$(CMPT_P)c4081.cpp		\
+						$(CMPT_P)c4514.cpp
 
 PARSER_P			=	$(SRC_P)parser/
 PARSER				=	$(PARSER_P)Parser.cpp	\
