@@ -31,6 +31,8 @@ namespace nts {
 
         void loadFile();
 
+        void clear();
+
         void simulate();
 
         void addComponent(std::string name);

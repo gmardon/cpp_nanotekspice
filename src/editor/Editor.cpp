@@ -54,12 +54,6 @@ namespace nts {
                         }
                         break;
                     }
-                    case Qt::RightButton: {
-                        QGraphicsItem *item = itemAt(me->scenePos());
-                        if (item && (item->type() == Connection::Type || item->type() == Block::Type))
-                            delete item;
-                        break;
-                    }
                 }
             }
             case QEvent::GraphicsSceneMouseMove: {
@@ -107,5 +101,10 @@ namespace nts {
         }
         this->scene->update();
         return QObject::eventFilter(o, e);
+    }
+
+    void Editor::clear() {
+        this->scene->clear();
+        this->conn = 0;
     }
 }

@@ -3,9 +3,9 @@
 #include "Editor.hpp"
 
 #include "Port.hpp"
-#include <typeinfo>
 #include <include/c4071.hpp>
 #include <include/Parser.hpp>
+#include <include/Commands.hpp>
 
 namespace nts {
 
@@ -32,9 +32,15 @@ namespace nts {
         saveAct->setStatusTip(tr("Simulate"));
         connect(simulateAct, SIGNAL(triggered()), this, SLOT(simulate()));
 
+        QAction *clearAct = new QAction(tr("&Clear"), this);
+        clearAct->setStatusTip(tr("Clear editor"));
+        connect(clearAct, SIGNAL(triggered()), this, SLOT(clear()));
+
         fileMenu = menuBar()->addMenu(tr("&File"));
         fileMenu->addAction(loadAct);
         fileMenu->addAction(saveAct);
+        fileMenu->addSeparator();
+        fileMenu->addAction(clearAct);
         fileMenu->addSeparator();
         fileMenu->addAction(quitAct);
 
@@ -140,14 +146,22 @@ namespace nts {
         }
     }
 
+    void MainWindow::clear() {
+        blocks = new std::vector<Block *>();
+        scene->clear();
+        this->nodesEditor->clear();
+    }
+
     void MainWindow::saveFile() {
         QString fname = QFileDialog::getSaveFileName();
         if (fname.isEmpty())
             return;
 
-        QFile f(fname);
-        f.open(QFile::WriteOnly);
-        QDataStream ds(&f);
+        std::vector<IComponent *> *components = new std::vector<IComponent *>();
+        for (const auto &block : *blocks) {
+            components->push_back(block->getAComponent());
+        }
+        save(fname.toStdString(), *components);
     }
 
     void MainWindow::loadFile() {
@@ -155,25 +169,31 @@ namespace nts {
         if (fname.isEmpty())
             return;
 
-        std::map<std::string, IComponent *> from = parser(fname.toStdString().c_str()); // todo add try catchs
+        std::map<std::string, IComponent *> from;
+        try {
+            from = parser(fname.toStdString().c_str());
+        } catch (std::exception exception) {
+            QMessageBox::information(this, "Parse error", "Cannot parse given file !");
+            return;
+        }
 
         std::vector<AComponent *> *components = new std::vector<AComponent *>();
 
         std::map<std::string, nts::IComponent *>::iterator it;
         for (std::map<std::string, nts::IComponent *>::iterator it = from.begin(); it != from.end(); ++it)
             (*components).push_back(dynamic_cast<AComponent *>((it->second)));
+
+        this->setComponents(*components);
     }
 
     void MainWindow::simulate() {
         for (const auto &block : *blocks) {
-            if (const_cast<nts::AComponent *>(block->getAComponent())->getType() == nts::AComponent::Type::IC) {
-                const_cast<nts::AComponent *>(block->getAComponent())->Compute(1);
-            }
+            const_cast<nts::AComponent *>(block->getAComponent())->Compute(0);
         }
     }
 
     void MainWindow::setComponents(std::vector<AComponent *> components) {
-        blocks = new std::vector<Block *>();
+        clear();
 
         int index = 0;
         for (const auto &component : components) {
@@ -211,6 +231,10 @@ namespace nts {
 
                     case Pin::Mode::VDD:
                         b->addOutputPort("VDD " + pin.getTargetPin(), const_cast<Pin *>(&pin));
+                        break;
+
+                    default:
+                        printf("UNDEFINED PIN");
                         break;
                 }
             }

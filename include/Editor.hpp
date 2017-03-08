@@ -27,6 +27,8 @@ namespace nts {
 
         bool eventFilter(QObject *, QEvent *);
 
+        void clear();
+
     private:
         QGraphicsItem *itemAt(const QPointF &);
 
